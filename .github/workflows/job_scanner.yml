@@ -1,0 +1,68 @@
+name: Job Scanner
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'      # GitHub may delay scheduled runs by a few minutes under load
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no Telegram, no state commit)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write                # needed to commit data/seen_jobs.json
+
+concurrency:                     # never run two scans at once (avoids duplicate alerts)
+  group: job-scanner
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: WeasyPrint system libraries (skipped if already on the runner image)
+        run: |
+          if ! dpkg -s libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-liberation >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-liberation
+          fi
+
+      - name: Install Python dependencies
+        run: pip install -q -r requirements.txt
+
+      - name: Scan, screen, tailor, notify
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CANDIDATE_PROFILE_B64: ${{ secrets.CANDIDATE_PROFILE_B64 }}   # optional (public repos)
+          GEMINI_MODELS: ${{ vars.GEMINI_MODELS }}                      # optional override
+          ON_QUOTA_EXHAUSTED: ${{ vars.ON_QUOTA_EXHAUSTED }}            # optional override
+          FIRST_SIGHTING: ${{ vars.FIRST_SIGHTING }}                    # optional override
+        run: python main.py ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Commit updated state
+        if: always() && inputs.dry_run != true
+        run: |
+          git config user.name  "job-hunter-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/seen_jobs.json data/state.json
+          if git diff --cached --quiet; then
+            echo "No state changes."
+            exit 0
+          fi
+          git commit -q -m "chore: update seen jobs [skip ci]"
+          for attempt in 1 2 3; do
+            git pull -q --rebase --autostash && git push -q && exit 0
+            echo "Push failed (attempt $attempt), retrying…"; sleep $((attempt * 5))
+          done
+          exit 1

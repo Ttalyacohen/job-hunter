@@ -1,0 +1,49 @@
+# Runtime settings. Most values can be overridden by environment variables
+# (see core/config.py) so you can tune them from GitHub without a commit.
+
+scan:
+  concurrency: 15              # asyncio.Semaphore size for all HTTP requests
+  request_timeout_s: 20
+  company_timeout_s: 60        # max time spent on one company per run
+  jitter_s: [0.05, 0.6]        # random delay before each request
+  max_retries: 2               # on 429 / 5xx / network errors
+  workday_page_size: 20        # Workday caps this at 20
+  workday_max_pages: 25        # 25 * 20 = 500 postings per search text
+
+pipeline:
+  # What to do with jobs that already exist the first time a company is scanned:
+  #   queue  -> evaluate them gradually (newest first) within the Gemini budget
+  #   silent -> mark them as seen and only alert on jobs posted from now on
+  first_sighting: queue
+  max_candidates_per_run: 40   # stage-1 survivors enriched + queued per run
+  prune_after_days: 60         # forget jobs not seen on any board for this long
+  # A location that only says "Israel" (no city, no remote/hybrid flag).
+  # false = drop it (most such roles are in the centre). Per-company override:
+  # `country_only_ok: true` in companies.yaml.
+  country_only_israel_counts: false
+  # When every Gemini model is out of quota:
+  #   wait             -> keep candidates queued until quota resets (default)
+  #   notify_unscreened -> alert immediately with a keyword-based track + base CV
+  on_quota_exhausted: wait
+
+gemini:
+  # Tried in order. On 404 (model retired) or daily-quota 429 the next one is used.
+  # Free-tier quotas are per model, so the chain also multiplies daily capacity.
+  # Override with env GEMINI_MODELS="model-a,model-b".
+  models:
+    - gemini-2.5-flash
+    - gemini-3.5-flash-lite
+    - gemini-3.8-flash
+  jobs_per_call: 5             # batch size: several jobs evaluated per request
+  max_calls_per_run: 6
+  min_seconds_between_calls: 7 # keeps us under ~10 requests/minute
+  max_description_chars: 3500  # per job, sent to Gemini
+  temperature: 0.2
+
+relevance:
+  min_score: 7
+  max_years_required: 3
+
+cv:
+  output_dir: output
+  max_courses: 8

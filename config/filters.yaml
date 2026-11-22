@@ -1,0 +1,246 @@
+# Stage-1 rule-based filter (zero API cost).
+# Matching is whole-word and case-insensitive. Spaces in a keyword also match
+# "-", "_", "/" or nothing, so "Full Stack" matches "Full-Stack" and "Fullstack".
+# Keywords under *_case_sensitive match only with the exact casing
+# (so "IT" does not drop titles that merely contain the word "it").
+
+title:
+  # A title containing ANY of these is dropped, even if it also matches a target.
+  exclude:
+    # Seniority
+    - Senior
+    - Sr
+    - Staff
+    - Principal
+    - Lead
+    - Manager
+    - Director
+    - VP
+    - Vice President
+    - Head of
+    - Architect
+    # QA / testing / verification
+    - QA
+    - Quality Assurance
+    - Tester
+    - Testing
+    - Manual Test
+    - Automation Test
+    - Test Automation
+    - Test Engineer
+    - SDET
+    - Verification
+    - Validation
+    # Non-development roles
+    - Helpdesk
+    - Help Desk
+    - System Admin
+    - System Administrator
+    - Sysadmin
+    - DevOps
+    - Support
+    - Product Manager
+    - Project Manager
+    - Program Manager
+    - Scrum
+    - Recruiter
+    - Sales
+    - Marketing
+    - UI/UX
+    - UX
+    - Hardware
+    - VLSI
+    - FPGA
+    # Hebrew equivalents
+    - בכיר
+    - בכירה
+    - ראש צוות
+    - מנהל
+    - מנהלת
+    - בודק
+    - בודקת
+    - בדיקות
+    - תמיכה
+    - מכירות
+    - שיווק
+    - גיוס
+    # Optional: uncomment to also drop student / intern positions
+    # - Student
+    # - Intern
+    # - Internship
+    # - סטודנט
+    # - סטודנטית
+  exclude_case_sensitive:
+    - IT
+    - NOC
+    - SOC
+    - HR
+
+  # A title must contain at least one of these to pass.
+  target:
+    # From the spec
+    - Software Engineer
+    - Software Developer
+    - Backend Developer
+    - Backend Engineer
+    - Full Stack
+    - Frontend
+    - Systems Engineer
+    - C++ Developer
+    - Python Developer
+    - Java Developer
+    - Algorithm Developer
+    - Algorithm Engineer
+    - Algorithm Researcher
+    - Algorithms Developer
+    - Algorithms Engineer
+    - Machine Learning Engineer
+    - ML Engineer
+    - AI Engineer
+    - AI Researcher
+    - Research Engineer
+    - Deep Learning Engineer
+    - Computer Vision Engineer
+    - NLP Engineer
+    - Data Scientist
+    - Cyber Researcher
+    - Security Researcher
+    - Cyber Software Developer
+    - Embedded Software
+    - Firmware Engineer
+    - Junior Developer
+    - New Grad
+    - Graduate
+    # Common synonyms seen on Israeli / big-tech boards
+    - SW Engineer
+    - SW Developer
+    - Software Development Engineer
+    - Software Engineering
+    - Applied Scientist
+    - Research Scientist
+    - ML Software Engineer
+    - AI Software Engineer
+    - Computer Vision
+    - Deep Learning
+    - Junior Software
+    - Junior Engineer
+    - Junior Backend
+    - Junior Algorithm
+    - College Graduate
+    - New College Grad
+    - Entry Level
+    # Hebrew equivalents
+    - מפתח תוכנה
+    - מפתחת תוכנה
+    - מפתח/ת תוכנה
+    - מהנדס תוכנה
+    - מהנדסת תוכנה
+    - מהנדס/ת תוכנה
+    - אלגוריתמאי
+    - אלגוריתמאית
+    - אלגוריתמאי/ת
+    - חוקר סייבר
+    - חוקרת סייבר
+    - מפתח/ת
+    - בוגר
+    - בוגרת
+    - בוגרי
+
+location:
+  # Normalised match: lower-case, apostrophes / hyphens / spaces / dots removed,
+  # so "Yokne'am Illit" -> "yokneamillit" contains "yokneam".
+  north:
+    - haifa
+    - hefa
+    - matam
+    - yokneam
+    - yoqneam
+    - yoqneam
+    - caesarea
+    - qesarya
+    - kesaria
+    - orakiva
+    - karmiel
+    - carmiel
+    - migdalhaemek
+    - migdalhaemeq
+    - nazareth
+    - nofhagalil
+    - nazarethillit
+    # Specific Krayot only: a bare "kiryat" would also match Kiryat Gat / Kiryat Ono
+    - krayot
+    - kiryatbialik
+    - qiryatbialik
+    - kiryatata
+    - qiryatata
+    - kiryatmotzkin
+    - qiryatmotzkin
+    - kiryatyam
+    - qiryatyam
+    - kiryattivon
+    - qiryattivon
+    - kiryatshmona
+    - qiryatshmona
+    - tiratcarmel
+    - tiratkarmel
+    - acre
+    - akko
+    - nahariya
+    - nahariyya
+    - galilee
+    - galil
+    - misgav
+    - teradion
+    - tefen
+    - barlev
+    - moreshet
+    - afula
+    - safed
+    - tzfat
+    - zefat
+    - ramatyishai
+    - northdistrict
+    - northerndistrict
+    - northernisrael
+    - northisrael
+    - חיפה
+    - יקנעם
+    - מתם
+    - קיסריה
+    - כרמיאל
+    - מגדלהעמק
+    - נצרת
+    - נוףהגליל
+    - הקריות
+    - קרייתביאליק
+    - קריתביאליק
+    - קרייתאתא
+    - קריתאתא
+    - קרייתמוצקין
+    - קריתמוצקין
+    - קרייתים
+    - קריתים
+    - קרייתטבעון
+    - קרייתשמונה
+    - טירתכרמל
+    - עכו
+    - נהריה
+    - גליל
+    - משגב
+    - תפן
+    - עפולה
+    - צפת
+    - צפון
+  israel:
+    - israel
+    - ישראל
+  # Treated as Israel only when combined with an "IL" token, e.g. "IL-Remote"
+  israel_codes: [il, isr]
+  remote_or_hybrid:
+    - remote
+    - hybrid
+    - workfromhome
+    - wfh
+    - היברידי
+    - מהבית
+    - מרחוק

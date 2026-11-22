@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{# Track: BACKEND_FULLSTACK and SYSTEMS_LOWLEVEL_CYBER.
+   Emphasis: software engineering, FastAPI / Redis / PostgreSQL, Java OOP / SOLID, C, Linux,
+   Operating Systems (100) and Computer Networks (98). Skills come right after the profile
+   so engineering screeners see the stack first. #}
+{% import "_macros.html" as m %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ cv.name }} — CV</title>
+  <meta name="author" content="{{ cv.name }}">
+  <style>{{ css | safe }}</style>
+</head>
+<body>
+  {{ m.header(cv) }}
+  {{ m.profile(cv) }}
+  {{ m.skills(cv) }}
+  {{ m.projects(cv, "Engineering & Research Projects") }}
+  {{ m.education(cv) }}
+  {{ m.entrepreneurship(cv) }}
+  {{ m.service(cv) }}
+</body>
+</html>

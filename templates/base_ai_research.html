@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{# Track: AI_ML_RESEARCH.
+   Emphasis: AI/ML engineering & research, M.Sc. thesis (IEEE ICC submission), PyTorch,
+   HuggingFace, computer vision, NLP and FastAPI inference deployment. Research comes first,
+   then education with the ML/CV/NLP grades, then skills. #}
+{% import "_macros.html" as m %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ cv.name }} — CV</title>
+  <meta name="author" content="{{ cv.name }}">
+  <style>{{ css | safe }}</style>
+</head>
+<body>
+  {{ m.header(cv) }}
+  {{ m.profile(cv) }}
+  {{ m.projects(cv, "Research & Projects") }}
+  {{ m.education(cv) }}
+  {{ m.skills(cv) }}
+  {{ m.entrepreneurship(cv) }}
+  {{ m.service(cv) }}
+</body>
+</html>

@@ -1,0 +1,50 @@
+name: Discover ATS & check sources
+
+# Run manually after adding companies. It detects the real ATS behind every
+# `ats: unknown` / `ats: generic` entry, rewrites data/companies.yaml, and prints
+# a health table showing how many jobs each board returns.
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Write detected ATS settings back to companies.yaml"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: job-scanner             # share the lock with the scanner (both touch the repo)
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -q -r requirements.txt
+
+      - name: Detect ATS platforms
+        run: python scripts/discover_ats.py --all ${{ inputs.apply && '--apply' || '' }}
+
+      - name: Source health check
+        env:
+          CANDIDATE_PROFILE_B64: ${{ secrets.CANDIDATE_PROFILE_B64 }}
+        run: python main.py --check-sources | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit companies.yaml
+        if: inputs.apply
+        run: |
+          git config user.name  "job-hunter-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/companies.yaml
+          git diff --cached --quiet && { echo "No changes."; exit 0; }
+          git commit -q -m "chore: auto-detect ATS platforms [skip ci]"
+          git pull -q --rebase --autostash && git push -q

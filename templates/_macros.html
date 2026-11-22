@@ -1,0 +1,71 @@
+{# Shared building blocks for both CV templates. Every value comes from data/profile.yaml. #}
+
+{% macro header(cv) -%}
+<header>
+  <h1>{{ cv.name }}</h1>
+  <div class="subtitle">{{ cv.subtitle }}</div>
+  <div class="contact"><span>{{ cv.contact.phone }}</span> | <span>{{ cv.contact.email }}</span> | <span>{{ cv.contact.location }}</span> | <span>{{ cv.contact.linkedin }}</span> | <span>{{ cv.contact.github }}</span></div>
+</header>
+{%- endmacro %}
+
+{% macro profile(cv) -%}
+<section>
+  <h2>Professional Profile</h2>
+  <ul>{% for line in cv.profile_lines %}<li>{{ line }}</li>{% endfor %}</ul>
+</section>
+{%- endmacro %}
+
+{% macro projects(cv, heading) -%}
+<section>
+  <h2>{{ heading }}</h2>
+  {% for p in cv.projects %}
+  <div class="item">
+    <div class="item-head">{{ p.title }}{% if p.meta %} <span class="meta">| {{ p.meta }}</span>{% endif %}{% if p.link %} <span class="link">| {{ p.link }}</span>{% endif %}</div>
+    <ul>{% for b in p.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
+  </div>
+  {% endfor %}
+</section>
+{%- endmacro %}
+
+{% macro entrepreneurship(cv) -%}
+{% if cv.entrepreneurship %}
+<section>
+  <h2>Entrepreneurship</h2>
+  <div class="item">
+    <div class="item-head">{{ cv.entrepreneurship.title }} <span class="meta">| {{ cv.entrepreneurship.meta }}</span></div>
+    <p>{{ cv.entrepreneurship.text }}</p>
+  </div>
+</section>
+{% endif %}
+{%- endmacro %}
+
+{% macro education(cv) -%}
+<section>
+  <h2>Education</h2>
+  {% for e in cv.education %}
+  <div class="item"><div class="item-head">{{ e.degree }} <span class="meta">| {{ e.school }} | {{ e.years }} | {{ e.details }}</span></div></div>
+  {% endfor %}
+  <p class="courses"><strong>Selected courses:</strong> {{ cv.courses | join(", ") }}</p>
+</section>
+{%- endmacro %}
+
+{% macro skills(cv) -%}
+<section class="skills">
+  <h2>Technical Skills</h2>
+  {% for row in cv.skills %}
+  <p><span class="label">{{ row.label }}:</span>
+    {% for s in row["entries"] %}{% if s.focus %}<strong>{{ s.name }}</strong>{% else %}{{ s.name }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+  {% endfor %}
+</section>
+{%- endmacro %}
+
+{% macro service(cv) -%}
+<section>
+  <h2>Military Service</h2>
+  {% for m in cv.military %}<div class="item"><div class="item-head">{{ m.title }} <span class="meta">| {{ m.years }}</span></div></div>{% endfor %}
+</section>
+<section>
+  <h2>Volunteering &amp; Leadership</h2>
+  <p>{{ cv.volunteering }}</p>
+</section>
+{%- endmacro %}

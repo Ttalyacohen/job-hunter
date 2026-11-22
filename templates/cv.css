@@ -1,0 +1,31 @@
+/* ATS-friendly single-column CV: real text, standard headings, no tables,
+   no icons, no multi-column layout. Strict A4, one page (enforced in code). */
+@page { size: A4; margin: 10mm 12mm 9mm 12mm; }
+
+html { font-family: "Liberation Sans", Arial, Helvetica, "DejaVu Sans", sans-serif;
+       font-size: 9pt; line-height: 1.22; color: #1a1a1a; }
+body { margin: 0; }
+
+header { text-align: center; margin-bottom: 5pt; }
+h1 { font-size: 20pt; margin: 0; letter-spacing: 0.3pt; color: #0b2a4a; }
+.subtitle { font-size: 10.5pt; font-weight: bold; margin: 1.5pt 0 2pt; color: #24496f; }
+.contact { font-size: 8.3pt; color: #333; }
+.contact span, .link { white-space: nowrap; }
+
+h2 { font-size: 10.5pt; text-transform: uppercase; letter-spacing: 0.6pt; color: #0b2a4a;
+     border-bottom: 0.9pt solid #0b2a4a; padding-bottom: 1pt; margin: 5.5pt 0 2.5pt; }
+
+ul { margin: 0; padding-left: 12pt; }
+li { margin: 0 0 0.8pt; }
+
+.item { margin-bottom: 2.8pt; page-break-inside: avoid; }
+.item-head { font-weight: bold; }
+.item-head .meta { font-weight: normal; color: #444; }
+.item-head .link { font-weight: normal; color: #24496f; }
+.item p { margin: 0.5pt 0 0; }
+section > p { margin: 0; }
+
+.skills p { margin: 0 0 1.4pt; }
+.skills .label { font-weight: bold; }
+.courses { margin: 1.5pt 0 0; }
+strong { font-weight: bold; color: #000; }
