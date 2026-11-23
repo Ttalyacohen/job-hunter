@@ -20,7 +20,7 @@
   <h2>{{ heading }}</h2>
   {% for p in cv.projects %}
   <div class="item">
-    <div class="item-head">{{ p.title }}{% if p.meta %} <span class="meta">| {{ p.meta }}</span>{% endif %}{% if p.link %} <span class="link">| {{ p.link }}</span>{% endif %}</div>
+    <div class="item-head">{{ p.title }}{% if p.meta %} <span class="meta">| {{ p.meta }}</span>{% endif %}{% if p.link %} <span class="meta">|</span> <span class="link">{{ p.link }}</span>{% endif %}</div>
     <ul>{% for b in p.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
   </div>
   {% endfor %}

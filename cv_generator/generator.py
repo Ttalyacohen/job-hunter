@@ -28,7 +28,7 @@ TRACK_TEMPLATE = {
     "SYSTEMS_LOWLEVEL_CYBER": ("base_systems_backend.html", "systems"),
 }
 TRACK_DEFAULTS = {  # subtitle id, domain line id
-    "AI_ML_RESEARCH": ("ai_research", "ai"),
+    "AI_ML_RESEARCH": ("ml_engineering", "ai"),   # development-first; Gemini picks ai_research for research roles
     "BACKEND_FULLSTACK": ("backend", "backend"),
     "SYSTEMS_LOWLEVEL_CYBER": ("systems", "systems"),
 }
@@ -86,8 +86,8 @@ class CVGenerator:
 
         valid_courses = {c["id"] for c in self.profile["courses"]}
         courses = [c for c in tailoring.get("course_ids") or [] if c in valid_courses]
-        if len(courses) < 6:   # top up with the template's defaults
-            courses += [c for c in defaults["courses"] if c not in courses]
+        # top up with the template's defaults; the one-page fitter trims back to 6 if needed
+        courses += [c for c in defaults["courses"] if c not in courses]
         courses = courses[: self.settings.get("max_courses", 8)]
 
         sub = tailoring.get("subtitle_id")
