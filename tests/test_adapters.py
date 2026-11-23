@@ -8,7 +8,8 @@ import respx
 from core.http import HttpClient
 from scraper import Scraper
 
-SCAN = {"concurrency": 5, "company_timeout_s": 10, "workday_page_size": 2, "workday_max_pages": 5}
+SCAN = {"concurrency": 5, "company_timeout_s": 10, "workday_page_size": 2, "workday_max_pages": 5,
+        "workday_page_delay_s": 0}
 
 
 def http():
@@ -88,7 +89,8 @@ def test_workday_pagination_and_enrich():
              "postedOn": "Posted 30+ Days Ago", "bulletFields": ["JR3"]}]},
     ]
     route = respx.post(f"{base}/jobs")
-    route.side_effect = [httpx.Response(200, json=p) for p in pages]
+    probe = {"total": 3, "jobPostings": [], "facets": []}          # no location facet -> search text
+    route.side_effect = [httpx.Response(200, json=p) for p in [probe, *pages]]
     respx.get(f"{base}/job/X/ML_JR2").respond(json={"jobPostingInfo": {
         "location": "Israel, Yokneam", "additionalLocations": ["Israel, Tel Aviv"], "jobDescription": "<p>PyTorch</p>",
         "externalUrl": "https://acme.wd1.myworkdayjobs.com/External/job/X/ML_JR2"}})
@@ -104,7 +106,8 @@ def test_workday_pagination_and_enrich():
             await s.enrich(ml, company)
             return res, ml
     res, ml = run(go())
-    assert len(res.jobs) == 3 and json.loads(route.calls[1].request.content)["offset"] == 2
+    assert len(res.jobs) == 3 and json.loads(route.calls[2].request.content)["offset"] == 2
+    assert json.loads(route.calls[1].request.content)["searchText"] == "Israel"
     assert ml.location == "Israel, Yokneam | Israel, Tel Aviv" and ml.description == "PyTorch"
 
 
@@ -162,3 +165,52 @@ def test_broken_board_does_not_stop_scan():
                                                 co("Good", ats="greenhouse", board="good")])
     res = run(go())
     assert res.failed_companies == {"bad"} and res.stats["good"]["error"] == ""
+
+
+@respx.mock
+def test_workday_uses_location_facet_instead_of_search():
+    base = "https://nv.wd5.myworkdayjobs.com/wday/cxs/nv/Ext"
+    facets = [{"facetParameter": "locationHierarchy1", "values": [
+                  {"descriptor": "United States", "id": "us", "count": 900},
+                  {"descriptor": "Israel", "id": "il", "count": 40}]},
+              {"facetParameter": "locationMainGroup", "values": [
+                  {"facetParameter": "locations", "values": [
+                      {"descriptor": "Israel, Yokneam", "id": "yok", "count": 25},
+                      {"descriptor": "Israel, Tel Aviv", "id": "tlv", "count": 15}]}]}]
+    route = respx.post(f"{base}/jobs")
+    route.side_effect = [
+        httpx.Response(200, json={"total": 940, "jobPostings": [], "facets": facets}),
+        httpx.Response(200, json={"total": 1, "jobPostings": [
+            {"title": "Software Engineer", "externalPath": "/job/Yokneam/SE_1", "locationsText": "Israel, Yokneam",
+             "bulletFields": ["JR9"]}]}),
+    ]
+
+    async def go():
+        async with http() as h:
+            return await Scraper(h, SCAN).scan([co("NV", ats="workday", host="nv.wd5.myworkdayjobs.com",
+                                                   tenant="nv", site="Ext")])
+    res = run(go())
+    body = json.loads(route.calls[1].request.content)
+    # both params match "Israel" with equal coverage (40); either is a correct Israel-only filter
+    assert body["appliedFacets"] in ({"locationHierarchy1": ["il"]}, {"locations": ["yok", "tlv"]})
+    assert body["searchText"] == "" and len(res.jobs) == 1 and res.jobs[0].job_id == "JR9"
+
+
+@respx.mock
+def test_eightfold_pcsx_then_v2_fallback():
+    respx.get(url__startswith="https://careers.qc.com/api/pcsx/search").respond(json={"data": {"count": 2, "positions": [
+        {"id": 11, "name": "Embedded Software Engineer", "locations": ["Haifa, Israel"],
+         "positionUrl": "/careers/job/11", "postedTs": 1763600000}]}})
+    respx.get(url__startswith="https://ms.example/api/pcsx/search").respond(404)
+    respx.get(url__startswith="https://ms.example/api/apply/v2/jobs").respond(json={"count": 1, "positions": [
+        {"id": 22, "name": "Software Engineer", "location": "Haifa, Haifa District, Israel",
+         "canonicalPositionUrl": "https://ms.example/careers/job/22", "t_create": 1763600000}]})
+
+    async def go():
+        async with http() as h:
+            return await Scraper(h, SCAN).scan([
+                co("QC", ats="eightfold", host="careers.qc.com", domain="qc.com", locations=["Haifa, Israel"]),
+                co("MS", ats="eightfold", host="ms.example", domain="ms.com", locations=["Haifa, Israel"])])
+    jobs = {j.company: j for j in run(go()).jobs}
+    assert jobs["QC"].url == "https://careers.qc.com/careers/job/11" and jobs["QC"].location == "Haifa, Israel"
+    assert jobs["MS"].title == "Software Engineer" and jobs["MS"].posted_at.startswith("2025")

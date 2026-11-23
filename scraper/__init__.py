@@ -11,6 +11,7 @@ from core.models import Job
 from scraper.amazon import AmazonAdapter
 from scraper.base import Adapter
 from scraper.comeet import ComeetAdapter
+from scraper.eightfold import EightfoldAdapter
 from scraper.generic import GenericAdapter
 from scraper.greenhouse import GreenhouseAdapter
 from scraper.lever import LeverAdapter
@@ -28,6 +29,7 @@ ADAPTERS: dict[str, type[Adapter]] = {
     "workable": WorkableAdapter,
     "workday": WorkdayAdapter,
     "amazon": AmazonAdapter,
+    "eightfold": EightfoldAdapter,
     "generic": GenericAdapter,
     "unknown": GenericAdapter,      # until discover_ats.py fills in the real ATS
 }

@@ -17,7 +17,7 @@ class AmazonAdapter(Adapter):
         found: dict[str, Job] = {}
         for loc in company.get("loc_queries") or ["Israel"]:
             offset = 0
-            for _ in range(5):
+            for _ in range(10):
                 data = await self.http.get_json(self.API.format(loc=quote(loc), off=offset))
                 rows = data.get("jobs") or []
                 for j in rows:

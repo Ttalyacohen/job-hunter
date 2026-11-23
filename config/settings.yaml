@@ -9,6 +9,7 @@ scan:
   max_retries: 2               # on 429 / 5xx / network errors
   workday_page_size: 20        # Workday caps this at 20
   workday_max_pages: 25        # 25 * 20 = 500 postings per search text
+  workday_page_delay_s: 0.8    # pause between Workday pages (NVIDIA rate-limits fast paging)
 
 pipeline:
   # What to do with jobs that already exist the first time a company is scanned:

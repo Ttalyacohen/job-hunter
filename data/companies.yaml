@@ -74,13 +74,14 @@ companies:
   verified: false
 
 - name: Qualcomm
-  ats: workday
-  host: qualcomm.wd5.myworkdayjobs.com
-  tenant: qualcomm
-  site: External
-  search_texts: [Haifa]
+  ats: eightfold
+  host: careers.qualcomm.com
+  domain: qualcomm.com
+  locations:
+  - Haifa, Israel
   verified: false
 
+  note: Qualcomm moved from Workday to Eightfold (careers.qualcomm.com)
 - name: Medtronic
   ats: workday
   host: medtronic.wd1.myworkdayjobs.com
@@ -111,11 +112,13 @@ companies:
   verified: false
 
 - name: VAST Data
-  ats: greenhouse
-  board: vastdata
+  ats: comeet
+  slug: vastdata
+  uid: '43.001'
   verified: false
 
   # ── Amazon (AWS / Annapurna Labs, Haifa) ───────────────────────────────────
+  note: comeet.com/jobs/vastdata/43.001 — has Haifa roles
 - name: Amazon
   ats: amazon
   loc_queries: ["Haifa, Israel"]
@@ -137,6 +140,8 @@ companies:
   careers_url: https://company.plarium.com/en/careers/
   verified: false
 
+  enabled: false
+  note: HQ is in Herzliya (no Northern site) — disabled
 - name: AppsFlyer
   ats: greenhouse
   careers_url: https://careers.appsflyer.com/
@@ -158,6 +163,8 @@ companies:
   careers_url: https://careers.checkpoint.com/
   verified: false
 
+  enabled: false
+  note: careers site blocks bots (HTTP 403); Tel Aviv HQ — disabled
 - name: CyberArk
   ats: unknown
   careers_url: https://careers.cyberark.com/
@@ -180,9 +187,10 @@ companies:
   verified: false
 
 - name: Tower Semiconductor
-  ats: unknown
-  careers_url: https://towersemi.com/careers/
-  default_location: Migdal HaEmek, Israel
+  ats: generic
+  careers_url: https://jobs.towersemi.com/search/?q=&locationsearch=Migdal%20Haemek
+  link_pattern: /job/
+  default_location: Migdal Haemek, Israel
   verified: false
 
   # ── Big tech with in-house career sites (generic scraper, best effort) ─────
@@ -191,8 +199,7 @@ companies:
   # their Haifa job alerts by email as a complement.
 - name: Google
   ats: generic
-  careers_url: 
-    https://www.google.com/about/careers/applications/jobs/results?location=Haifa%2C%20Israel
+  careers_url: https://www.google.com/about/careers/applications/jobs/results?location=Haifa%2C%20Israel
   link_pattern: "jobs/results/\\d+"
   default_location: Haifa, Israel
   verified: false
@@ -205,10 +212,11 @@ companies:
   verified: false
 
 - name: Microsoft
-  ats: generic
-  careers_url: 
-    https://jobs.careers.microsoft.com/global/en/search?lc=Haifa%2C%20Haifa%20District%2C%20Israel
-  default_location: Haifa, Israel
+  ats: eightfold
+  host: apply.careers.microsoft.com
+  domain: microsoft.com
+  locations:
+  - Haifa, Israel
   verified: false
 
 - name: Elbit Systems
@@ -221,6 +229,8 @@ companies:
   careers_url: https://career.rafael.co.il/
   verified: false
 
+  enabled: false
+  note: careers site blocks bots (HTTP 491) — disabled
 - name: IBM Research Haifa
   ats: generic
   careers_url: https://www.ibm.com/careers/search?field_keyword_05[0]=Israel
