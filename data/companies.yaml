@@ -132,7 +132,8 @@ companies:
   params:
     country[]: ISR
     normalized_country_code[]: ISR
-  note: params try to restrict results to Israel (previously hit the 1000-job cap)
+  note: params try to restrict results to Israel (previously hit the 1000-job 
+    cap)
 - name: monday.com
   ats: unknown
   careers_url: https://monday.com/jobs
@@ -196,7 +197,8 @@ companies:
 
 - name: Tower Semiconductor
   ats: generic
-  careers_url: https://jobs.towersemi.com/search/?q=&locationsearch=Migdal%20Haemek
+  careers_url: 
+    https://jobs.towersemi.com/search/?q=&locationsearch=Migdal%20Haemek
   link_pattern: /job/
   default_location: Migdal Haemek, Israel
   verified: false
@@ -207,7 +209,8 @@ companies:
   # their Haifa job alerts by email as a complement.
 - name: Google
   ats: generic
-  careers_url: https://www.google.com/about/careers/applications/jobs/results?location=Haifa%2C%20Israel
+  careers_url: 
+    https://www.google.com/about/careers/applications/jobs/results?location=Haifa%2C%20Israel
   link_pattern: "jobs/results/\\d+"
   default_location: Haifa, Israel
   verified: false
@@ -276,16 +279,19 @@ companies:
   verified: false
   note: Optics innovation center in Haifa
 - name: Astera Labs
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.asteralabs.com/careers/
-  verified: false
+  verified: true
   note: New design center in Haifa + Tel Aviv (Feb 2026)
+  board: asteralabs
 - name: proteanTecs
-  ats: unknown
+  ats: comeet
   careers_url: https://www.proteantecs.com/
   default_location: Haifa, Israel
-  verified: false
+  verified: true
   note: HQ in Haifa
+  uid: D5.00E
+  token: 5DE23340029121D562912029122334
 - name: Tactile Mobility
   ats: unknown
   careers_url: https://tactilemobility.com/
@@ -331,15 +337,22 @@ companies:
   verified: false
   note: Yokneam
 - name: Biosense Webster (J&J)
-  ats: unknown
+  ats: workday
   careers_url: https://www.careers.jnj.com/
-  verified: false
+  verified: true
   note: Yokneam R&D and manufacturing center
+  host: jj.wd5.myworkdayjobs.com
+  tenant: jj
+  site: JJ
+  search_texts:
+  - Israel
 - name: K2View
-  ats: unknown
+  ats: comeet
   careers_url: https://www.k2view.com/
-  verified: false
+  verified: true
   note: Listed among top Yokneam startups
+  slug: k2view
+  uid: D5.000
 - name: Cisco
   ats: unknown
   careers_url: https://jobs.cisco.com/
@@ -362,10 +375,12 @@ companies:
   verified: false
   note: R&D center in Caesarea
 - name: Wiliot
-  ats: unknown
+  ats: comeet
   careers_url: https://www.wiliot.com/
-  verified: false
+  verified: true
   note: Caesarea
+  uid: F6.003
+  token: 6F329B2DE6379829B229B2037983E8B3E8B
 - name: ColorChip
   ats: unknown
   careers_url: https://www.color-chip.com/
@@ -461,30 +476,35 @@ companies:
   verified: false
   note: Tel Aviv area — kept only when the posting says hybrid / remote
 - name: Taboola
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.taboola.com/careers
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: taboola
 - name: Outbrain
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.outbrain.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: teads1
 - name: Riskified
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.riskified.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: riskified
 - name: Similarweb
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.similarweb.com/corp/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: similarweb
 - name: Axonius
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.axonius.com/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: axonius
 - name: Lemonade
   ats: unknown
   careers_url: https://www.lemonade.com/
@@ -501,15 +521,17 @@ companies:
   verified: false
   note: Tel Aviv area — kept only when the posting says hybrid / remote
 - name: Cato Networks
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.catonetworks.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: catonetworks
 - name: Armis
-  ats: unknown
+  ats: smartrecruiters
   careers_url: https://www.armis.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  company_id: armis
 - name: Melio
   ats: unknown
   careers_url: https://meliopayments.com/
@@ -521,25 +543,30 @@ companies:
   verified: false
   note: Tel Aviv area — kept only when the posting says hybrid / remote
 - name: Tipalti
-  ats: unknown
+  ats: greenhouse
   careers_url: https://tipalti.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: tipaltisolutions
 - name: Yotpo
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.yotpo.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: yotpo
 - name: AI21 Labs
-  ats: unknown
+  ats: comeet
   careers_url: https://www.ai21.com/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  uid: E6.001
+  token: 6E12946DC230276E13DE93708294637083708
 - name: Pagaya
-  ats: unknown
+  ats: greenhouse
   careers_url: https://pagaya.com/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: pagayais
 - name: eToro
   ats: unknown
   careers_url: https://www.etoro.com/
@@ -551,32 +578,38 @@ companies:
   verified: false
   note: Tel Aviv area — kept only when the posting says hybrid / remote
 - name: Payoneer
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.payoneer.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: payoneer
 - name: JFrog
-  ats: unknown
+  ats: greenhouse
   careers_url: https://jfrog.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: jfrog
 - name: Cyera
-  ats: unknown
+  ats: comeet
   careers_url: https://www.cyera.com/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  slug: cyera
+  uid: '17.008'
 - name: Island
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.island.io/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: island
 - name: Snyk
   ats: unknown
   careers_url: https://snyk.io/careers/
   verified: false
   note: Tel Aviv area — kept only when the posting says hybrid / remote
 - name: Fireblocks
-  ats: unknown
+  ats: greenhouse
   careers_url: https://www.fireblocks.com/careers/
-  verified: false
+  verified: true
   note: Tel Aviv area — kept only when the posting says hybrid / remote
+  board: fireblocks
