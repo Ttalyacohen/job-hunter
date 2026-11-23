@@ -151,3 +151,14 @@ def test_same_role_in_second_city_is_not_alerted_twice(monkeypatch, tmp_path, se
     run_once(monkeypatch, tmp_path, settings)
     seen = json.loads((tmp_path / "seen_jobs.json").read_text())["jobs"]
     assert msg.call_count == 1 and gem.call_count == 1 and seen["greenhouse:acme:2"]["s"] == "d"
+
+
+def test_dropped_lines_lists_filtered_jobs_safely():
+    import main as m
+    from core.models import Job
+    p = m.Pipeline.__new__(m.Pipeline)
+    p.dropped = [(Job(company="Acme", company_id="acme", job_id="1", title="Senior | QA_Engineer",
+                      location="Haifa", url="https://x/1", source="t"), "title excluded: Senior")]
+    lines = p.dropped_lines()
+    assert lines[0].startswith("**New postings dropped") and "Acme" in lines[4]
+    assert "\\|" in lines[4] and "https://x/1" in lines[4]

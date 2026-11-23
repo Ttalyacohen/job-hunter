@@ -23,6 +23,14 @@ class TelegramError(RuntimeError):
     pass
 
 
+def _location_line(job: Job, ev: Evaluation) -> str:
+    listed = job.location or "Location not stated"
+    actual = (ev.work_location or "").strip()
+    if actual and actual.lower() not in listed.lower():
+        return f"{actual} (board lists: {listed})"
+    return listed
+
+
 def format_alert(job: Job, ev: Evaluation) -> str:
     e = html.escape
     badge = TRACK_BADGES.get(ev.track, ev.track)
@@ -30,12 +38,14 @@ def format_alert(job: Job, ev: Evaluation) -> str:
     lines = [
         f"🚀 <b>{e(job.company)}</b> — <b>{e(job.title)}</b>",
         f"{badge}",
-        f"📍 {e(job.location or 'Location not stated')}"
+        f"📍 {e(_location_line(job, ev))}"
         + (f" · {e(job.workplace)}" if job.workplace else "")
         + f"   ⭐ <b>{score}</b>",
     ]
     if ev.years_required is not None:
         lines.append(f"🎓 Requires {ev.years_required}+ yrs")
+    if ev.missing_requirements:
+        lines.append("⚠️ <b>Gaps:</b> " + e("; ".join(ev.missing_requirements)))
     if ev.summary_bullets:
         lines.append("")
         lines += [f"• {e(b)}" for b in ev.summary_bullets[:3]]

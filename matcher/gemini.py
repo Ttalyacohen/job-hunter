@@ -236,12 +236,18 @@ class Evaluator:
             reasons.append(f"requires {years}+ years")
         if raw.get("location_ok") is False:
             reasons.append("location not workable from the North")
+        missing = [str(m).strip()[:90] for m in (raw.get("missing_requirements") or []) if str(m).strip()][:4]
+        if missing:                       # unmet hard requirement -> never above 7, whatever the model said
+            score = min(score, 7)
+            if score < self.min_score and not any(r.startswith("score") for r in reasons):
+                reasons.append(f"score {score} < {self.min_score}")
         bullets = [str(b).strip() for b in (raw.get("summary_bullets") or []) if str(b).strip()][:3]
         return Evaluation(
             job_key=job.key, match_score=max(0, min(score, 10)), track=track, is_relevant=not reasons,
             role_type=role, years_required=years, summary_bullets=bullets,
             tailoring_plan=self._clean_plan(raw.get("tailoring_plan") or {}),
             rejection_reason="; ".join(reasons), model=model,
+            missing_requirements=missing, work_location=str(raw.get("work_location") or "").strip()[:60],
         )
 
     def _clean_plan(self, plan: dict) -> dict:

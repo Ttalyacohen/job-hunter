@@ -44,6 +44,8 @@ class Evaluation:
     rejection_reason: str = ""
     model: str = ""
     screened: bool = True            # False when produced by the keyword fallback
+    missing_requirements: list[str] = field(default_factory=list)
+    work_location: str = ""          # actual site per the description, when it differs
 
     def to_dict(self) -> dict:
         return asdict(self)

@@ -4,7 +4,7 @@
 <header>
   <h1>{{ cv.name }}</h1>
   <div class="subtitle">{{ cv.subtitle }}</div>
-  <div class="contact"><span>{{ cv.contact.phone }}</span> | <span>{{ cv.contact.email }}</span> | <span>{{ cv.contact.location }}</span> | <span>{{ cv.contact.linkedin }}</span> | <span>{{ cv.contact.github }}</span></div>
+  <div class="contact"><span>{{ cv.contact.phone }}</span> | <a href="mailto:{{ cv.contact.email }}">{{ cv.contact.email }}</a> | <span>{{ cv.contact.location }}</span> | <a href="https://{{ cv.contact.linkedin }}">{{ cv.contact.linkedin }}</a> | <a href="https://{{ cv.contact.github }}">{{ cv.contact.github }}</a></div>
 </header>
 {%- endmacro %}
 
@@ -20,7 +20,7 @@
   <h2>{{ heading }}</h2>
   {% for p in cv.projects %}
   <div class="item">
-    <div class="item-head">{{ p.title }}{% if p.meta %} <span class="meta">| {{ p.meta }}</span>{% endif %}{% if p.link %} <span class="meta">|</span> <span class="link">{{ p.link }}</span>{% endif %}</div>
+    <div class="item-head">{{ p.title }}{% if p.meta %} <span class="meta">| {{ p.meta }}</span>{% endif %}{% if p.link %} <span class="meta">|</span> <a class="link" href="https://{{ p.link }}">{{ p.link }}</a>{% endif %}</div>
     <ul>{% for b in p.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
   </div>
   {% endfor %}

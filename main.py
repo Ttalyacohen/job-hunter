@@ -69,6 +69,10 @@ def title_signature(job: Job) -> str:
     return f"{job.company_id}|{re.sub(r'[^a-z0-9א-ת]+', ' ', job.title.lower()).strip()}"
 
 
+def _md(text: str) -> str:
+    return re.sub(r"([|`*_\[\]<>])", r"\\\1", str(text or ""))[:80]
+
+
 def write_step_summary(lines: list[str]) -> None:
     path = os.getenv("GITHUB_STEP_SUMMARY")
     if path:
@@ -99,6 +103,7 @@ class Pipeline:
             self.notifier = TelegramNotifier(self.settings.telegram_token, self.settings.telegram_chat_id)
         self.counts = {"scraped": 0, "new": 0, "filtered": 0, "candidates": 0, "evaluated": 0,
                        "relevant": 0, "rejected": 0, "notified": 0, "queued": 0, "bootstrap": 0}
+        self.dropped: list[tuple[Job, str]] = []   # (job, reason) filtered this run, shown in the run summary
         self.alerts_sent = 0
 
     # ---- delivery ------------------------------------------------------------
@@ -190,6 +195,7 @@ class Pipeline:
                 if not verdict.ok:
                     self.seen.mark(job.key, FILTERED, job.title)
                     self.counts["filtered"] += 1
+                    self.dropped.append((job, verdict.reason))
                     log.debug("stage1 drop: %s / %s — %s", job.company, job.title, verdict.reason)
                     continue
                 if first_sighting == "silent" and self.state.company_is_new(job.company_id):
@@ -225,6 +231,7 @@ class Pipeline:
                 if not verdict.ok:
                     self.seen.mark(job.key, FILTERED, job.title)
                     self.counts["filtered"] += 1
+                    self.dropped.append((job, verdict.reason))
                     continue
                 final.append(job)
             self.counts["candidates"] = len(final)
@@ -246,6 +253,7 @@ class Pipeline:
                    f"queued={self.counts['queued']} time={time.monotonic() - t0:.1f}s")
         log.info("Done: %s", summary)
         write_step_summary(["### Job scan", "", f"`{summary}`", "",
+                            *self.dropped_lines(),
                             *[f"- ⚠️ {s['name']} ({s['ats']}): {s['error']}"
                               for s in result.stats.values() if s["error"]]])
         if self.notifier:
@@ -310,6 +318,7 @@ class Pipeline:
                             self.alerts_sent += 1
                         else:
                             self.counts["rejected"] += 1
+                            self.dropped.append((job, f"Gemini {ev.match_score}/10: {ev.rejection_reason}"))
                             if not self.args.dry_run:
                                 self.seen.mark(job.key, REJECTED, job.title)
                             log.info("rejected (%s/10): %s / %s — %s", ev.match_score, job.company,
@@ -331,6 +340,18 @@ class Pipeline:
             self.alerts_sent += 1
 
     # ---- utilities -----------------------------------------------------------
+    def dropped_lines(self, limit: int = 40) -> list[str]:
+        if not self.dropped:
+            return []
+        out = [f"**New postings dropped by the filters ({len(self.dropped)}):**", "",
+               "| Company | Title | Location | Reason |", "|---|---|---|---|"]
+        for job, reason in self.dropped[:limit]:
+            title = f"[{_md(job.title)}]({job.url})" if job.url else _md(job.title)
+            out.append(f"| {_md(job.company)} | {title} | {_md(job.location)} | {_md(reason)} |")
+        if len(self.dropped) > limit:
+            out.append(f"| … | {len(self.dropped) - limit} more | | |")
+        return out + [""]
+
     @staticmethod
     def print_sources(stats: dict) -> None:
         rows = sorted(stats.values(), key=lambda s: (bool(s["error"]), -s["count"], s["name"]))

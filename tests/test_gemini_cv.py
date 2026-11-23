@@ -117,3 +117,17 @@ def test_cv_is_one_page_and_fully_grounded(settings, profile, tmp_path, track):
     for word in re.findall(r"[A-Za-z][A-Za-z+\-./']{2,}", text):
         w = word.strip(".,:;|()").lower()
         assert w in headings or w in corpus.lower(), f"ungrounded word on CV: {word}"
+
+
+@respx.mock
+def test_missing_requirement_caps_score_and_shows_gaps(settings, profile, tmp_path):
+    from notifier.telegram_bot import format_alert
+    respx.post(API.format(model="gemini-2.5-flash")).mock(return_value=gemini_ok([good_eval(
+        match_score=9, missing_requirements=["published papers at top venues (ICC paper only submitted)"],
+        work_location="Tel Aviv")]))
+    ev, _ = evaluator(settings, profile, tmp_path)
+    res = asyncio.run(ev.evaluate([JOB]))[JOB.key]
+    assert res.match_score == 7 and res.is_relevant           # still sent, but honestly scored
+    text = format_alert(JOB, res)
+    assert "Gaps:" in text and "ICC paper only submitted" in text
+    assert "Tel Aviv (board lists: Haifa, Israel)" in text

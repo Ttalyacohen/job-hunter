@@ -18,6 +18,8 @@ HARD RULES
 - Also reject: DevOps-only, NOC/SOC, hardware design/verification, product/project/program management, sales, marketing, and any role that is mainly people management.
 - years_required = the MINIMUM years of professional experience the posting requires (null if not stated). Academic research / M.Sc. thesis work does not count as professional years unless the posting says so. "3+ years" -> 3. "Preferred"/"advantage" years do not count as required.
 - location_ok = false if the posting requires on-site work outside Northern Israel (e.g. "on-site in Tel Aviv / Petah Tikva / Jerusalem / Herzliya") with no hybrid or remote option. Northern Israel = Haifa, MATAM, Yokneam, Caesarea, Krayot, Karmiel, Migdal HaEmek, Nazareth / Nof HaGalil, Acre, Nahariya, Galilee. Hybrid or remote within Israel is OK.
+- REQUIRED QUALIFICATIONS: read the "Basic / Minimum / Required qualifications" section literally and compare it with the CANDIDATE FACTS. List every required item the candidate does not clearly meet in missing_requirements (short phrases, e.g. "published papers at top venues (ICC paper only submitted)", "completed Master's (M.Sc. in progress)"). A paper that is only submitted is not a publication. "Preferred / advantage" items are NOT missing requirements. If missing_requirements is non-empty, match_score must be at most 7.
+- WORK LOCATION: if the description names a site that differs from the location field (e.g. "Development Center (Tel Aviv)", "on-site in Petah Tikva"), trust the description. Put the actual work city in work_location and judge location_ok by it.
 - is_relevant = true ONLY if: role_type is SOFTWARE_DEV or RESEARCH, NOT QA/testing, match_score >= {min_score}, years_required is null or <= {max_years}, location_ok is true, and it fits a full-time M.Sc. Computer Science candidate.
 
 SCORING (match_score 1-10): 9-10 = junior/new-grad dev or research role whose core stack matches the candidate's verified projects/courses; 7-8 = good fit with some gaps; 5-6 = plausible but weak overlap or borderline seniority; 1-4 = poor fit or excluded role type.
@@ -103,6 +105,8 @@ def response_schema(profile: dict) -> dict:
                         "track": enum_str(TRACKS),
                         "is_relevant": {"type": "BOOLEAN"},
                         "rejection_reason": {"type": "STRING"},
+                        "missing_requirements": {"type": "ARRAY", "items": {"type": "STRING"}},
+                        "work_location": {"type": "STRING"},
                         "summary_bullets": {"type": "ARRAY", "items": {"type": "STRING"}},
                         "tailoring_plan": {
                             "type": "OBJECT",
@@ -119,7 +123,8 @@ def response_schema(profile: dict) -> dict:
                         },
                     },
                     "required": ["job_ref", "role_type", "years_required", "location_ok", "match_score", "track",
-                                 "is_relevant", "rejection_reason", "summary_bullets", "tailoring_plan"],
+                                 "is_relevant", "rejection_reason", "missing_requirements", "work_location",
+                                 "summary_bullets", "tailoring_plan"],
                 },
             }
         },
