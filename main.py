@@ -81,7 +81,8 @@ class Pipeline:
         self.profile = load_profile()
         self.seen = SeenJobs(DATA_DIR / "seen_jobs.json")
         self.state = RunState(DATA_DIR / "state.json")
-        self.rules = RuleFilter(self.filters, self.settings.pipeline["country_only_israel_counts"])
+        self.rules = RuleFilter(self.filters, self.settings.pipeline["country_only_israel_counts"],
+                                self.settings.pipeline.get("center_hybrid", False))
         self.cv = CVGenerator(self.profile, self.settings.cv)
         self.out_dir = ROOT / self.settings.cv.get("output_dir", "output")
         self.notifier: TelegramNotifier | None = None
@@ -209,7 +210,7 @@ class Pipeline:
                     backlog += 1          # never screen a job without its description; retry next run
                     continue
                 company = self.company_by_id.get(job.company_id, {})
-                verdict = self.rules.check(job, company)
+                verdict = self.rules.check(job, company, strict=True)
                 if not verdict.ok:
                     self.seen.mark(job.key, FILTERED, job.title)
                     self.counts["filtered"] += 1

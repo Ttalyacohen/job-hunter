@@ -45,6 +45,7 @@ PATTERNS = {
     "smartrecruiters": [re.compile(r"(?:careers|jobs)\.smartrecruiters\.com/([A-Za-z0-9_-]+)")],
     "workable": [re.compile(r"apply\.workable\.com/(?:api/v\d/(?:widget/)?accounts/)?([A-Za-z0-9_-]+)")],
     "workday": [re.compile(r"([a-z0-9-]+)\.(wd\d+)\.myworkdayjobs\.com/(?:[a-z]{2}-[A-Z]{2}/)?([A-Za-z0-9_-]+)")],
+    "breezy": [re.compile(r"([a-z0-9-]+)\.breezy\.hr")],
 }
 IGNORE_SLUGS = {"embed", "v1", "js", "api", "jobs", "job_board", "en", "careers", "apply", "www", "static", "widget"}
 
@@ -64,10 +65,32 @@ async def fetch_text(http: HttpClient, url: str) -> str:
         return ""
 
 
-async def candidates_from_page(http: HttpClient, url: str) -> list[dict]:
+CAREER_LINK = re.compile(r"career|jobs|join[-_ ]?us|open[-_ ]?positions|work[-_ ]?with[-_ ]?us|משרות|דרושים|קריירה", re.I)
+
+
+async def candidates_from_page(http: HttpClient, url: str, depth: int = 0) -> list[dict]:
     html = await fetch_text(http, url)
     if not html:
         return []
+    found = _scan(url, html, await _embedded(http, url, html))
+    if found or depth:
+        return found
+    # no ATS on this page: follow up to 3 "Careers / Jobs" links (e.g. from a homepage)
+    soup = BeautifulSoup(html, "html.parser")
+    links = []
+    for a in soup.find_all("a", href=True):
+        href = urljoin(url, a["href"]).split("#")[0]
+        if href.startswith("http") and href.rstrip("/") != url.rstrip("/") and \
+                (CAREER_LINK.search(href) or CAREER_LINK.search(a.get_text(" "))):
+            links.append(href)
+    for link in list(dict.fromkeys(links))[:3]:
+        found = await candidates_from_page(http, link, depth + 1)
+        if found:
+            return found
+    return []
+
+
+async def _embedded(http: HttpClient, url: str, html: str) -> list[str]:
     blobs = [html]
     soup = BeautifulSoup(html, "html.parser")
     for tag in soup.find_all(["iframe", "script"], src=True)[:15]:
@@ -76,6 +99,10 @@ async def candidates_from_page(http: HttpClient, url: str) -> list[dict]:
             blobs.append(src)
             if tag.name == "iframe":
                 blobs.append(await fetch_text(http, src))
+    return blobs
+
+
+def _scan(url: str, html: str, blobs: list[str]) -> list[dict]:
     text = "\n".join(blobs)
     found: list[dict] = []
     for m in PATTERNS["comeet_api"][0].finditer(text):
@@ -99,6 +126,9 @@ async def candidates_from_page(http: HttpClient, url: str) -> list[dict]:
     for m in PATTERNS["workable"][0].finditer(text):
         if m.group(1).lower() not in IGNORE_SLUGS:
             found.append({"ats": "workable", "account": m.group(1)})
+    for m in PATTERNS["breezy"][0].finditer(text):
+        if m.group(1).lower() not in IGNORE_SLUGS:
+            found.append({"ats": "breezy", "subdomain": m.group(1)})
     for m in PATTERNS["workday"][0].finditer(text):
         if m.group(3).lower() not in IGNORE_SLUGS | {"wday"}:
             found.append({"ats": "workday", "host": f"{m.group(1)}.{m.group(2)}.myworkdayjobs.com",
@@ -216,7 +246,7 @@ async def main() -> int:
             if entry is None:
                 continue
             for k in ("board", "site", "region", "uid", "token", "slug", "company_id", "account",
-                      "host", "tenant", "search_texts"):
+                      "host", "tenant", "search_texts", "subdomain"):
                 if k in entry and k not in cand:
                     del entry[k]
             entry.update(cand)

@@ -33,8 +33,13 @@ class RuleResult:
     reason: str = ""
 
 
+HYBRID_EVIDENCE = re.compile(
+    r"hybrid|remote|work(ing)? from home|\bwfh\b|flexible (work|location)|days? (a|per) week (in|at|from) (the )?(office|home)"
+    r"|\d\s*days? (from|at) home|היברידי|היברידית|מהבית|עבודה מרחוק|מרחוק", re.I)
+
+
 class RuleFilter:
-    def __init__(self, filters: dict, country_only_israel_counts: bool = False):
+    def __init__(self, filters: dict, country_only_israel_counts: bool = False, center_hybrid: bool = False):
         t = filters["title"]
         self.exclude = _compile(t.get("exclude", []), case_sensitive=False)
         self.exclude_cs = _compile(t.get("exclude_case_sensitive", []), case_sensitive=True)
@@ -45,6 +50,8 @@ class RuleFilter:
         self.il_codes = {c.lower() for c in loc.get("israel_codes", [])}
         self.remote = [normalize_location(x) for x in loc["remote_or_hybrid"]]
         self.country_only_default = country_only_israel_counts
+        self.center_hybrid = center_hybrid
+        self.center = [normalize_location(x) for x in loc.get("center_near_train", [])]
 
     # ---- title ---------------------------------------------------------------
     def check_title(self, title: str) -> RuleResult:
@@ -62,7 +69,9 @@ class RuleFilter:
         tokens = set(re.split(r"[^a-z]+", raw.lower()))
         return bool(tokens & self.il_codes)
 
-    def check_location(self, job: Job, company: dict | None = None) -> RuleResult:
+    def check_location(self, job: Job, company: dict | None = None, strict: bool = False) -> RuleResult:
+        """strict=True after the description was fetched: a centre-of-Israel job must then
+        show hybrid / remote evidence in its text, otherwise it is dropped."""
         raw = job.location or ""
         norm = normalize_location(raw)
         if not norm:
@@ -76,6 +85,13 @@ class RuleFilter:
         country_only_ok = (company or {}).get("country_only_ok", self.country_only_default)
         if is_il and country_only_ok and norm in self.israel:
             return RuleResult(True, "country-only Israel")
+        if self.center_hybrid and any(k in norm for k in self.center):
+            job.extra["center"] = True
+            if HYBRID_EVIDENCE.search(f"{job.workplace} {raw} {job.description}"):
+                return RuleResult(True, "centre near train, hybrid/remote stated")
+            if strict or job.description:
+                return RuleResult(False, f"centre, no hybrid/remote mentioned: {raw[:60]}")
+            return RuleResult(True, "centre near train, hybrid to be confirmed from description")
         if is_il:
             return RuleResult(False, f"Israel but not North/remote: {raw[:60]}")
         return RuleResult(False, f"not Israel: {raw[:60]}")
@@ -84,10 +100,10 @@ class RuleFilter:
         """Workday shows '3 Locations' in the list view; we must fetch details."""
         return bool(job.extra.get("multi_location"))
 
-    def check(self, job: Job, company: dict | None = None) -> RuleResult:
+    def check(self, job: Job, company: dict | None = None, strict: bool = False) -> RuleResult:
         t = self.check_title(job.title)
         if not t.ok:
             return t
-        if self.needs_location_detail(job):
+        if self.needs_location_detail(job) and not strict:
             return RuleResult(True, "location pending detail fetch")
-        return self.check_location(job, company)
+        return self.check_location(job, company, strict)

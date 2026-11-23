@@ -3,7 +3,7 @@ GET https://www.amazon.jobs/en/search.json?loc_query=Haifa%2C%20Israel&result_li
 """
 from __future__ import annotations
 
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 from core.models import Job
 from scraper.base import Adapter, html_to_text, workplace_from
@@ -18,7 +18,10 @@ class AmazonAdapter(Adapter):
         for loc in company.get("loc_queries") or ["Israel"]:
             offset = 0
             for _ in range(10):
-                data = await self.http.get_json(self.API.format(loc=quote(loc), off=offset))
+                url = self.API.format(loc=quote(loc), off=offset)
+                if company.get("params"):
+                    url += "&" + urlencode(company["params"])
+                data = await self.http.get_json(url)
                 rows = data.get("jobs") or []
                 for j in rows:
                     jid = str(j.get("id_icims") or j.get("id") or j.get("job_path"))

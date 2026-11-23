@@ -79,3 +79,36 @@ def test_workday_multi_location_defers(rules):
     j = job(location="3 Locations")
     j.extra["multi_location"] = True
     assert rules.check(j).ok
+
+
+# ---- centre-of-Israel near train: kept only with hybrid / remote evidence ----
+@pytest.fixture
+def center_rules(filters):
+    return RuleFilter(filters, center_hybrid=True)
+
+
+def test_center_without_description_waits_for_details(center_rules):
+    j = job(location="Tel Aviv, Israel")
+    assert center_rules.check(j).ok                       # provisional, description not fetched yet
+    assert not center_rules.check(j, strict=True).ok      # after enrich: still no evidence -> drop
+
+
+@pytest.mark.parametrize("desc,ok", [
+    ("We work in a hybrid model, 3 days a week in the office.", True),
+    ("Remote-friendly team.", True),
+    ("משרה היברידית, יומיים מהבית", True),
+    ("On-site position, 5 days a week in our Tel Aviv office.", False),
+])
+def test_center_decided_by_description(center_rules, desc, ok):
+    j = job(location="Ramat Gan, Israel")
+    j.description = desc
+    assert center_rules.check(j).ok is ok
+
+
+def test_center_hybrid_flag_from_ats(center_rules):
+    assert center_rules.check(job(location="Herzliya", workplace="hybrid")).ok
+
+
+def test_non_train_city_still_dropped(center_rules):
+    assert not center_rules.check(job(location="Jerusalem, Israel", workplace="")).ok
+    assert not center_rules.check(job(location="Rehovot, Israel")).ok

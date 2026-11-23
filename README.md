@@ -111,6 +111,11 @@ If you prefer a private repo, change the cron to `'0 * * * *'` (hourly ≈ 720 r
   Nazareth/Nof HaGalil, Acre, Nahariya, Galilee, Misgav/Teradion, Tefen, …, in English and
   Hebrew, spelling-tolerant), or **hybrid/remote in Israel**. Kiryat Gat / Kiryat Ono are *not*
   matched (only specific Krayot towns are listed).
+- **Centre-of-Israel cities near a train station** (Tel Aviv, Ramat Gan, Herzliya, Petah Tikva,
+  Ra'anana, Kfar Saba, Hod HaSharon, Netanya, Hadera: `location.center_near_train`) are kept
+  **only if the posting says hybrid or remote**. When the list view has no description, the job
+  waits until its description is fetched, and is dropped if it shows no hybrid / remote wording.
+  Turn off with `pipeline.center_hybrid: false`.
 
 **Stage 2: Gemini** (`matcher/prompt.py`, `matcher/gemini.py`)
 - Up to 5 jobs are screened **per request** to stretch the free quota.

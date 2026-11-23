@@ -214,3 +214,18 @@ def test_eightfold_pcsx_then_v2_fallback():
     jobs = {j.company: j for j in run(go()).jobs}
     assert jobs["QC"].url == "https://careers.qc.com/careers/job/11" and jobs["QC"].location == "Haifa, Israel"
     assert jobs["MS"].title == "Software Engineer" and jobs["MS"].posted_at.startswith("2025")
+
+
+@respx.mock
+def test_breezy():
+    respx.get("https://asensus.breezy.hr/json").respond(json=[{
+        "id": "b1", "friendly_id": "79d6-cv-engineer", "name": "Computer Vision Software Engineer",
+        "url": "https://asensus.breezy.hr/p/79d6-cv-engineer", "published_date": "2026-11-01",
+        "location": {"name": "Yokneam, IL", "city": "Yokneam", "country": {"name": "Israel"}, "is_remote": False}}])
+
+    async def go():
+        async with http() as h:
+            return await Scraper(h, SCAN).scan([co("Asensus", ats="breezy", subdomain="asensus")])
+    j = run(go()).jobs[0]
+    assert (j.title, j.location, j.url) == ("Computer Vision Software Engineer", "Yokneam, IL",
+                                            "https://asensus.breezy.hr/p/79d6-cv-engineer")

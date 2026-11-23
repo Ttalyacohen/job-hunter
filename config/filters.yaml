@@ -237,6 +237,35 @@ location:
     - עפולה
     - צפת
     - צפון
+  # Centre cities on the coastal / Karmiel-Haifa-Tel Aviv rail lines. Jobs here are kept
+  # ONLY when the posting states hybrid or remote work (settings: pipeline.center_hybrid).
+  # Note: business parks can still be far from the station (e.g. Herzliya Pituach).
+  center_near_train:
+    - telaviv
+    - tlv
+    - תלאביב
+    - ramatgan
+    - רמתגן
+    - bneibrak
+    - בניברק
+    - herzliya
+    - הרצליה
+    - petahtikva
+    - petahtiqva
+    - petachtikva
+    - פתחתקווה
+    - פתחתקוה
+    - raanana
+    - רעננה
+    - kfarsaba
+    - כפרסבא
+    - hodhasharon
+    - הודהשרון
+    - netanya
+    - נתניה
+    - binyamina
+    - hadera
+    - חדרה
   israel:
     - israel
     - ישראל

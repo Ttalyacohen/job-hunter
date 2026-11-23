@@ -79,6 +79,7 @@ companies:
   domain: qualcomm.com
   locations:
   - Haifa, Israel
+  - Hod HaSharon, Israel
   verified: false
 
   note: Qualcomm moved from Workday to Eightfold (careers.qualcomm.com)
@@ -121,10 +122,17 @@ companies:
   note: comeet.com/jobs/vastdata/43.001 — has Haifa roles
 - name: Amazon
   ats: amazon
-  loc_queries: ["Haifa, Israel"]
+  loc_queries:
+  - Haifa, Israel
+  - Yokneam, Israel
+  - Tel Aviv, Israel
   verified: false
 
   # ── Comeet / unknown ATS (run discover_ats.py to fill in) ──────────────────
+  params:
+    country[]: ISR
+    normalized_country_code[]: ISR
+  note: params try to restrict results to Israel (previously hit the 1000-job cap)
 - name: monday.com
   ats: unknown
   careers_url: https://monday.com/jobs
@@ -217,8 +225,13 @@ companies:
   domain: microsoft.com
   locations:
   - Haifa, Israel
+  - Nazareth, Israel
+  - Yokneam, Israel
+  - Tel Aviv, Israel
+  - Herzliya, Israel
   verified: false
 
+  note: R&D in Haifa (MATAM), Nazareth and Yokneam
 - name: Elbit Systems
   ats: unknown
   careers_url: https://elbitsystemscareer.com/
@@ -235,3 +248,335 @@ companies:
   ats: generic
   careers_url: https://www.ibm.com/careers/search?field_keyword_05[0]=Israel
   verified: false
+- name: Salesforce
+  ats: workday
+  host: salesforce.wd12.myworkdayjobs.com
+  tenant: salesforce
+  site: External_Career_Site
+  search_texts:
+  - Israel
+  verified: false
+  note: Nazareth development center
+- name: Broadcom
+  ats: workday
+  host: broadcom.wd1.myworkdayjobs.com
+  tenant: broadcom
+  site: External_Career
+  search_texts:
+  - Israel
+  verified: false
+  note: Nazareth R&D (Tsofen list)
+- name: Jabil
+  ats: workday
+  host: jabil.wd5.myworkdayjobs.com
+  tenant: jabil
+  site: Jabil_Careers
+  search_texts:
+  - Haifa
+  verified: false
+  note: Optics innovation center in Haifa
+- name: Astera Labs
+  ats: unknown
+  careers_url: https://www.asteralabs.com/careers/
+  verified: false
+  note: New design center in Haifa + Tel Aviv (Feb 2026)
+- name: proteanTecs
+  ats: unknown
+  careers_url: https://www.proteantecs.com/
+  default_location: Haifa, Israel
+  verified: false
+  note: HQ in Haifa
+- name: Tactile Mobility
+  ats: unknown
+  careers_url: https://tactilemobility.com/
+  default_location: Haifa, Israel
+  verified: false
+  note: Haifa startup
+- name: Medisafe
+  ats: unknown
+  careers_url: https://www.medisafe.com/
+  verified: false
+  note: Haifa startup
+- name: MeMed
+  ats: unknown
+  careers_url: https://www.me-med.com/
+  default_location: Tirat Carmel, Israel
+  verified: false
+  note: Haifa-area (Tirat Carmel) medtech
+- name: Fiverr
+  ats: unknown
+  careers_url: https://www.fiverr.com/jobs
+  verified: false
+  note: Opened a Haifa development center (2019)
+- name: Cognex (RealSense)
+  ats: unknown
+  careers_url: https://www.cognex.com/company/careers
+  verified: false
+  note: RealSense Haifa center became Cognex global CV & robotics R&D
+- name: ZIM
+  ats: unknown
+  careers_url: https://www.zim.com/
+  default_location: Haifa, Israel
+  verified: false
+  note: HQ in Haifa (digital / IT teams)
+- name: Kulicke & Soffa
+  ats: unknown
+  careers_url: https://www.kns.com/
+  verified: false
+  note: Israel sites in the Haifa / Yokneam area
+- name: Lumenis
+  ats: unknown
+  careers_url: https://www.lumenis.com/
+  default_location: Yokneam, Israel
+  verified: false
+  note: Yokneam
+- name: Biosense Webster (J&J)
+  ats: unknown
+  careers_url: https://www.careers.jnj.com/
+  verified: false
+  note: Yokneam R&D and manufacturing center
+- name: K2View
+  ats: unknown
+  careers_url: https://www.k2view.com/
+  verified: false
+  note: Listed among top Yokneam startups
+- name: Cisco
+  ats: unknown
+  careers_url: https://jobs.cisco.com/
+  verified: false
+  note: Leased offices in the Caesarea railway campus (Mar 2026)
+- name: ForSight Robotics
+  ats: unknown
+  careers_url: https://www.forsightrobotics.com/
+  verified: false
+  note: Caesarea railway campus
+- name: XACT Robotics
+  ats: unknown
+  careers_url: https://www.xactrobotics.com/
+  default_location: Caesarea, Israel
+  verified: false
+  note: Caesarea
+- name: Advanced Energy
+  ats: unknown
+  careers_url: https://www.advancedenergy.com/
+  verified: false
+  note: R&D center in Caesarea
+- name: Wiliot
+  ats: unknown
+  careers_url: https://www.wiliot.com/
+  verified: false
+  note: Caesarea
+- name: ColorChip
+  ats: unknown
+  careers_url: https://www.color-chip.com/
+  verified: false
+  note: Caesarea
+- name: Camtek
+  ats: unknown
+  careers_url: https://www.camtek.com/
+  default_location: Migdal HaEmek, Israel
+  verified: false
+  note: HQ in Migdal HaEmek
+- name: CI Systems
+  ats: unknown
+  careers_url: https://www.ci-systems.com/
+  default_location: Migdal HaEmek, Israel
+  verified: false
+  note: Migdal HaEmek
+- name: Amdocs
+  ats: unknown
+  careers_url: https://jobs.amdocs.com/
+  verified: false
+  note: Nazareth R&D center
+- name: Personetics
+  ats: unknown
+  careers_url: https://personetics.com/
+  verified: false
+  note: Nazareth R&D center
+- name: Galil Software
+  ats: unknown
+  careers_url: https://www.galilsoftware.com/
+  default_location: Nazareth, Israel
+  verified: false
+  note: Nazareth software house (hires many juniors)
+- name: Alpha Omega
+  ats: unknown
+  careers_url: https://www.alphaomega-eng.com/
+  default_location: Nof HaGalil, Israel
+  verified: false
+  note: Nazareth / Nof HaGalil neurotech
+- name: Asensus Surgical
+  ats: breezy
+  subdomain: asensus-surgical
+  default_location: Yokneam, Israel
+  verified: false
+  note: Yokneam R&D (surgical robotics, computer vision); jobs on Breezy HR
+- name: Flex
+  ats: workday
+  host: flextronics.wd1.myworkdayjobs.com
+  tenant: flextronics
+  site: Careers
+  search_texts:
+  - Israel
+  verified: false
+  note: Design center in Haifa
+- name: Novocure
+  ats: unknown
+  careers_url: https://www.novocure.com/careers/
+  verified: false
+  note: Haifa R&D
+- name: InSightec
+  ats: unknown
+  careers_url: https://www.insightec.com/
+  default_location: Tirat Carmel, Israel
+  verified: false
+  note: HQ in Tirat Carmel (Haifa area)
+- name: NeuReality
+  ats: unknown
+  careers_url: https://www.neureality.ai/
+  default_location: Caesarea, Israel
+  verified: false
+  note: AI-chip startup in Caesarea
+- name: Sofwave
+  ats: unknown
+  careers_url: https://sofwave.com/
+  default_location: Yokneam, Israel
+  verified: false
+  note: Yokneam medical aesthetics
+- name: RealView Imaging
+  ats: unknown
+  careers_url: https://www.realviewimaging.com/
+  default_location: Yokneam, Israel
+  verified: false
+  note: Yokneam medical imaging
+- name: Applied Spectral Imaging
+  ats: unknown
+  careers_url: https://www.spectral-imaging.com/
+  default_location: Yokneam, Israel
+  verified: false
+  note: Yokneam
+- name: Wix
+  ats: unknown
+  careers_url: https://careers.wix.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Taboola
+  ats: unknown
+  careers_url: https://www.taboola.com/careers
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Outbrain
+  ats: unknown
+  careers_url: https://www.outbrain.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Riskified
+  ats: unknown
+  careers_url: https://www.riskified.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Similarweb
+  ats: unknown
+  careers_url: https://www.similarweb.com/corp/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Axonius
+  ats: unknown
+  careers_url: https://www.axonius.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Lemonade
+  ats: unknown
+  careers_url: https://www.lemonade.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Gong
+  ats: unknown
+  careers_url: https://www.gong.io/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Wiz
+  ats: unknown
+  careers_url: https://www.wiz.io/careers
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Cato Networks
+  ats: unknown
+  careers_url: https://www.catonetworks.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Armis
+  ats: unknown
+  careers_url: https://www.armis.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Melio
+  ats: unknown
+  careers_url: https://meliopayments.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Rapyd
+  ats: unknown
+  careers_url: https://www.rapyd.net/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Tipalti
+  ats: unknown
+  careers_url: https://tipalti.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Yotpo
+  ats: unknown
+  careers_url: https://www.yotpo.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: AI21 Labs
+  ats: unknown
+  careers_url: https://www.ai21.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Pagaya
+  ats: unknown
+  careers_url: https://pagaya.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: eToro
+  ats: unknown
+  careers_url: https://www.etoro.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Playtika
+  ats: unknown
+  careers_url: https://www.playtika.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Payoneer
+  ats: unknown
+  careers_url: https://www.payoneer.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: JFrog
+  ats: unknown
+  careers_url: https://jfrog.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Cyera
+  ats: unknown
+  careers_url: https://www.cyera.com/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Island
+  ats: unknown
+  careers_url: https://www.island.io/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Snyk
+  ats: unknown
+  careers_url: https://snyk.io/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote
+- name: Fireblocks
+  ats: unknown
+  careers_url: https://www.fireblocks.com/careers/
+  verified: false
+  note: Tel Aviv area — kept only when the posting says hybrid / remote

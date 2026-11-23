@@ -10,6 +10,7 @@ from core.http import HttpClient
 from core.models import Job
 from scraper.amazon import AmazonAdapter
 from scraper.base import Adapter
+from scraper.breezy import BreezyAdapter
 from scraper.comeet import ComeetAdapter
 from scraper.eightfold import EightfoldAdapter
 from scraper.generic import GenericAdapter
@@ -30,6 +31,7 @@ ADAPTERS: dict[str, type[Adapter]] = {
     "workday": WorkdayAdapter,
     "amazon": AmazonAdapter,
     "eightfold": EightfoldAdapter,
+    "breezy": BreezyAdapter,
     "generic": GenericAdapter,
     "unknown": GenericAdapter,      # until discover_ats.py fills in the real ATS
 }

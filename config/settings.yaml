@@ -23,6 +23,9 @@ pipeline:
   # false = drop it (most such roles are in the centre). Per-company override:
   # `country_only_ok: true` in companies.yaml.
   country_only_israel_counts: false
+  # Jobs in centre-of-Israel cities near a train station (config/filters.yaml ->
+  # location.center_near_train) pass only if the posting says hybrid / remote.
+  center_hybrid: true
   # When every Gemini model is out of quota:
   #   wait             -> keep candidates queued until quota resets (default)
   #   notify_unscreened -> alert immediately with a keyword-based track + base CV
