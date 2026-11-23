@@ -1,6 +1,43 @@
 {
  "alerts": {},
- "companies_seen": [],
- "gemini": {},
+ "companies_seen": [
+  "amazon",
+  "apple",
+  "applied-materials",
+  "appsflyer",
+  "augury",
+  "cadence",
+  "cyberark",
+  "elbit-systems",
+  "ge-healthcare",
+  "google",
+  "hailo",
+  "hibob",
+  "ibm-research-haifa",
+  "imagry",
+  "intel",
+  "kla",
+  "lightricks",
+  "marvell",
+  "medtronic",
+  "microsoft",
+  "mobileye",
+  "monday-com",
+  "nvidia",
+  "philips",
+  "plus500",
+  "qualcomm",
+  "quali",
+  "tower-semiconductor",
+  "vast-data"
+ ],
+ "gemini": {
+  "calls": {
+   "gemini-3.5-flash-lite": 6
+  },
+  "date": "2026-11-22",
+  "exhausted": [],
+  "unavailable": []
+ },
  "outbox": []
 }
