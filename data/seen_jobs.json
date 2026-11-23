@@ -6,6 +6,12 @@
    "s": "f",
    "t": "Senior Solutions Architect, Public Sector - Israel"
   },
+  "amazon:amazon:10375571": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Embedded Software Engineer - Networking drivers, ENA team"
+  },
   "amazon:amazon:10379250": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -78,6 +84,12 @@
    "s": "f",
    "t": "Technical Account Manager, ES-EMEA-SMB"
   },
+  "amazon:amazon:10439538": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "SW Engineer - Virtual Platforms"
+  },
   "amazon:amazon:10442944": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -89,6 +101,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Applied Scientist, Personalization, Personalization Strategic Initiatives Scienc"
+  },
+  "amazon:amazon:10442973": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Applied Scientist, Personalization, Personalization"
   },
   "amazon:amazon:10444995": {
    "f": "2026-11-23",
@@ -252,6 +270,12 @@
    "s": "f",
    "t": "Technical Leader Physical Design"
   },
+  "amazon:amazon:10496770": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Embedded Software Engineer, EFA Team"
+  },
   "amazon:amazon:10498433": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -336,6 +360,12 @@
    "s": "f",
    "t": "Q&R Lab Engineer, Annapurna Labs IC Q&R"
   },
+  "amazon:amazon:10521736": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Embedded Software Engineer - Nitro , Annapurna Labs"
+  },
   "amazon:amazon:10524283": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -407,6 +437,18 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Software Engineer in Test , Graviton Team"
+  },
+  "amazon:amazon:10534007": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Software Engineer - Linux kernel, EFA"
+  },
+  "amazon:amazon:10535796": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Embedded Software Engineer, SRD Annapurna Labs"
   },
   "amazon:amazon:10551712": {
    "f": "2026-11-23",
@@ -492,6 +534,12 @@
    "s": "f",
    "t": "Senior Software Development Engineer, Machine Learning Israel (MLIL) — Integrati"
   },
+  "amazon:amazon:10568625": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Cloud Software Engineer, Annapurna Labs"
+  },
   "amazon:amazon:10568678": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -527,6 +575,18 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Software Development Engineer - Shopping Personalization, Amazon Stores"
+  },
+  "amazon:amazon:10571057": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Software Developer Engineer, AWS Transform"
+  },
+  "amazon:amazon:10571818": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Embedded Software Engineer, Annapurna"
   },
   "amazon:amazon:10575582": {
    "f": "2026-11-23",
@@ -599,6 +659,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "PCIe System Integration Engineer"
+  },
+  "amazon:amazon:10582342": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Junior SW Engineer - Virtual Platforms"
   },
   "amazon:amazon:10582401": {
    "f": "2026-11-23",
@@ -690,6 +756,12 @@
    "s": "f",
    "t": "AWS Marketplace Specialists Customer"
   },
+  "amazon:amazon:10590972": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Software Development Engineer, System SW group"
+  },
   "amazon:amazon:10590973": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -737,6 +809,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Verification Engineer, Nitro Team"
+  },
+  "amazon:amazon:10595319": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Software Development Engineer - 2027"
   },
   "amazon:amazon:10595320": {
    "f": "2026-11-23",
@@ -798,6 +876,12 @@
    "s": "f",
    "t": "Test and Product Engineer"
   },
+  "amazon:amazon:10599438": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Cloud Software Engineer, Annapurna Labs"
+  },
   "amazon:amazon:10599442": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -827,6 +911,18 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Software Embedded Engineer"
+  },
+  "amazon:amazon:10602408": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Software Development Engineer, AWS Agentic AI"
+  },
+  "amazon:amazon:10603256": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Embedded Software Engineer, AWS Annapurna Labs"
   },
   "amazon:amazon:10605544": {
    "f": "2026-11-23",
@@ -6666,6 +6762,12 @@
    "s": "f",
    "t": "Data Center Infrastructure Delivery Manager"
   },
+  "amazon:amazon:10611003": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "Embedded Software Engineer, EFA Team"
+  },
   "amazon:amazon:10611004": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -6834,11 +6936,29 @@
    "s": "f",
    "t": "Advertising Account Manager, CN Large Customer, Amazon Ads"
   },
+  "amazon:amazon:3038930": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Embedded Software Engineer, AWS Annapurna Labs"
+  },
   "amazon:amazon:3138774": {
    "f": "2026-11-23",
    "l": "2026-11-23",
    "s": "f",
    "t": "Senior Network Software Engineer , SRD Annapurna Labs"
+  },
+  "amazon:amazon:3147697": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Software Development Engineer, AWS Agentic AI"
+  },
+  "amazon:amazon:3155020": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Embedded Software Engineer, Annapurna Labs"
   },
   "amazon:amazon:3155214": {
    "f": "2026-11-23",
@@ -6851,6 +6971,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Chip Design Engineer, Graviton Team"
+  },
+  "amazon:amazon:3167825": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Software Development Engineer, AWS Agentic AI"
   },
   "amazon:amazon:3195865": {
    "f": "2026-11-23",
@@ -9690,6 +9816,12 @@
    "s": "f",
    "t": "Senior Sales Engineer - Federal (DOE)"
   },
+  "comeet:vast-data:B5.F24": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "QA Automation Team Lead"
+  },
   "comeet:vast-data:B6.639": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -10668,6 +10800,12 @@
    "s": "f",
    "t": "CAD RTL/FE Manager"
   },
+  "generic:apple:662f5c7c64002595": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "n",
+   "t": "AI Research Engineer - Chip Design"
+  },
   "generic:apple:6aede1bfaf56deb8": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -11377,6 +11515,12 @@
    "t": "Careers"
   },
   "generic:forsight-robotics:48da149a37153730": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Careers"
+  },
+  "generic:galil-software:914a42430e8d5f92": {
    "f": "2026-11-23",
    "l": "2026-11-23",
    "s": "f",
@@ -12125,6 +12269,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "EU Sales Manager Sales · Full-time · Senior"
+  },
+  "generic:imagry:e241eecc0619cee1": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "r",
+   "t": "Junior Software Test Practical Engineer Delivery · Full-time · Intermediate"
   },
   "generic:insightec:110d76e9b46c42d9": {
    "f": "2026-11-23",
@@ -14766,6 +14916,12 @@
    "s": "f",
    "t": "Enterprise Sales Director"
   },
+  "greenhouse:cato-networks:5041486101": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Software Engineering Team Lead"
+  },
   "greenhouse:cato-networks:5041536101": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -15491,6 +15647,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Finance Collection Analyst"
+  },
+  "greenhouse:jfrog:8344440": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Software Engineer - Artifactory"
   },
   "greenhouse:jfrog:8344450": {
    "f": "2026-11-23",
@@ -19410,6 +19572,12 @@
    "s": "f",
    "t": "FP&A"
   },
+  "workday:flex:WD232332": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Program Administrator"
+  },
   "workday:flex:WD233457": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -19703,6 +19871,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Manufacturing Technician for Intel Kiryat Gat"
+  },
+  "workday:intel:JR0288787": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Supply Chain Analyst"
   },
   "workday:intel:JR0289021": {
    "f": "2026-11-23",
@@ -20321,6 +20495,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Legal Intern"
+  },
+  "workday:marvell:2605267": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "AI research intern"
   },
   "workday:marvell:2605309": {
    "f": "2026-11-23",
@@ -22566,6 +22746,12 @@
    "s": "f",
    "t": "Senior Software and DevOps Development Engineer"
   },
+  "workday:nvidia:JR2029252": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Director, Software Technical Program Management"
+  },
   "workday:nvidia:JR2029254": {
    "f": "2026-11-23",
    "l": "2026-11-23",
@@ -22889,6 +23075,12 @@
    "l": "2026-11-23",
    "s": "f",
    "t": "Technical Architect Salesforce"
+  },
+  "workday:salesforce:JR362697": {
+   "f": "2026-11-23",
+   "l": "2026-11-23",
+   "s": "f",
+   "t": "Offensive Security Researcher"
   },
   "workday:salesforce:JR363149": {
    "f": "2026-11-23",
