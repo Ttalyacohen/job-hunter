@@ -10,6 +10,7 @@ scan:
   workday_page_size: 20        # Workday caps this at 20
   workday_max_pages: 25        # 25 * 20 = 500 postings per search text
   workday_page_delay_s: 0.8    # pause between Workday pages (NVIDIA rate-limits fast paging)
+  workday_host_concurrency: 2  # max parallel requests per Workday host
 
 pipeline:
   # What to do with jobs that already exist the first time a company is scanned:
@@ -31,8 +32,7 @@ gemini:
   # Tried in order. On 404 (model retired) or daily-quota 429 the next one is used.
   # Free-tier quotas are per model, so the chain also multiplies daily capacity.
   # Override with env GEMINI_MODELS="model-a,model-b".
-  models:
-    - gemini-2.5-flash
+  models:                      # gemini-2.5-flash returned 404 (retired) in Nov 2026
     - gemini-3.5-flash-lite
     - gemini-3.8-flash
   jobs_per_call: 5             # batch size: several jobs evaluated per request
@@ -43,7 +43,7 @@ gemini:
 
 relevance:
   min_score: 7
-  max_years_required: 3
+  max_years_required: 2      # chosen Nov 2026 (spec said 3)
 
 cv:
   output_dir: output

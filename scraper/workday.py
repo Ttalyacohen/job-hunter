@@ -50,7 +50,16 @@ def find_location_facet(facets: list, terms: list[str]) -> tuple[str, list[str]]
 
 
 class WorkdayAdapter(Adapter):
+    """All Workday tenants are served by the same infrastructure, which rate-limits
+    per client IP. Requests to each host are serialised (max 2 in flight)."""
     name = "workday"
+
+    def __init__(self, http, settings):
+        super().__init__(http, settings)
+        self._host_sem: dict[str, asyncio.Semaphore] = {}
+
+    def _sem(self, c: dict) -> asyncio.Semaphore:
+        return self._host_sem.setdefault(c["host"], asyncio.Semaphore(self.settings.get("workday_host_concurrency", 2)))
 
     def _base(self, c: dict) -> str:
         return f"https://{c['host']}/wday/cxs/{c['tenant']}/{c['site']}"
@@ -58,7 +67,8 @@ class WorkdayAdapter(Adapter):
     async def _page(self, company: dict, facets: dict, text: str, offset: int) -> dict:
         payload = {"appliedFacets": facets, "limit": self.settings.get("workday_page_size", 20),
                    "offset": offset, "searchText": text}
-        return await self.http.post_json(f"{self._base(company)}/jobs", payload)
+        async with self._sem(company):
+            return await self.http.post_json(f"{self._base(company)}/jobs", payload)
 
     async def _collect(self, company: dict, facets: dict, text: str, found: dict, first: dict | None) -> None:
         max_pages = self.settings.get("workday_max_pages", 25)
@@ -108,7 +118,9 @@ class WorkdayAdapter(Adapter):
     async def enrich(self, job: Job, company: dict) -> Job:
         if job.description:
             return job
-        d = await self.http.get_json(f"{self._base(company)}{job.extra['path']}")
+        async with self._sem(company):
+            await asyncio.sleep(self.settings.get("workday_page_delay_s", 0.8))
+            d = await self.http.get_json(f"{self._base(company)}{job.extra['path']}")
         info = d.get("jobPostingInfo") or {}
         locs = [info.get("location", "")] + list(info.get("additionalLocations") or [])
         if any(locs):

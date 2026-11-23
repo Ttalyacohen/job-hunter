@@ -86,5 +86,6 @@ class Scraper:
         try:
             return await asyncio.wait_for(self.adapter_for(company).enrich(job, company), timeout=30)
         except Exception as exc:
-            log.warning("enrich failed for %s / %s: %s", job.company, job.title, exc)
+            log.warning("enrich failed for %s / %s: %s — will retry next run", job.company, job.title, exc)
+            job.extra["enrich_failed"] = True
             return job

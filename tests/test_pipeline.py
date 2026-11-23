@@ -112,3 +112,24 @@ def test_quota_exhausted_keeps_jobs_queued(monkeypatch, tmp_path, settings):
     seen = json.loads((tmp_path / "seen_jobs.json").read_text())["jobs"]
     assert "greenhouse:acme:1" not in seen and "greenhouse:acme:4" not in seen   # still queued
     assert msg.call_count == 0
+
+
+@respx.mock
+def test_job_whose_description_fails_to_load_is_not_screened(monkeypatch, tmp_path, settings):
+    """A 429 while fetching details must keep the job queued, not send it to Gemini blind."""
+    monkeypatch.setattr(app, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(app, "ROOT", tmp_path)
+    monkeypatch.setattr(app, "load_companies", lambda: [
+        {"name": "SR", "id": "sr", "ats": "smartrecruiters", "company_id": "sr", "enabled": True}])
+    settings.gemini_api_key, settings.telegram_token, settings.telegram_chat_id = "KEY", "TOKEN", "42"
+    monkeypatch.setattr(app, "load_settings", lambda: settings)
+    respx.get(url__startswith="https://api.smartrecruiters.com/v1/companies/sr/postings?").respond(json={
+        "totalFound": 1, "content": [{"id": "P1", "name": "Junior Software Engineer",
+                                      "location": {"city": "Haifa", "country": "il"}}]})
+    respx.get("https://api.smartrecruiters.com/v1/companies/sr/postings/P1").respond(429)
+    gem = respx.post(API.format(model="gemini-2.5-flash")).mock(side_effect=gemini_reply)
+    args = argparse.Namespace(dry_run=False, no_gemini=False, check_sources=False, companies=None)
+    asyncio.run(app.Pipeline(args).run())
+    f = tmp_path / "seen_jobs.json"
+    seen = json.loads(f.read_text())["jobs"] if f.exists() else {}
+    assert gem.call_count == 0 and "smartrecruiters:sr:P1" not in seen

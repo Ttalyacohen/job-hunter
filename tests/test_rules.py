@@ -32,6 +32,8 @@ def test_target_titles_pass(rules, title):
     "Product Manager", "Software Architect", "Hardware Engineer", "FPGA Engineer", "VLSI Designer",
     "Sales Engineer", "UI/UX Designer", "בודק/ת תוכנה", "מפתח תוכנה בכיר",
     "Marketing Analyst",          # no target keyword
+    "Physical Design Backend Engineer", "ASIC Software Engineer", "Research Scientist Student",
+    "Software Engineer Intern", "סטודנט/ית לפיתוח תוכנה",
 ])
 def test_excluded_titles_fail(rules, title):
     assert not rules.check_title(title).ok, title
@@ -45,6 +47,10 @@ def test_it_is_case_sensitive(rules):
 
 def test_lead_does_not_match_leading(rules):
     assert rules.check_title("Software Engineer, Leading-Edge AI").ok
+
+
+def test_intern_does_not_match_internal(rules):
+    assert rules.check_title("Software Engineer, Internal Tools").ok
 
 
 @pytest.mark.parametrize("loc,workplace", [

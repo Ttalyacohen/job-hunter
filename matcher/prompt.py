@@ -14,7 +14,7 @@ ROLE_TYPES = ["SOFTWARE_DEV", "RESEARCH", "QA_TEST", "DEVOPS_IT_SUPPORT", "HARDW
 SYSTEM_RULES = """You screen job postings for one specific candidate and plan CV tailoring.
 
 HARD RULES
-- Accept ONLY hands-on software development, engineering, or R&D/research roles (including Software Engineering, Backend/Full-Stack, Systems/Cyber, Algorithm Development, ML/AI Engineering, and AI/Cyber Research). Strictly REJECT any QA, software testing, test automation, verification, IT, support, or roles requiring >3 years of experience.
+- Accept ONLY hands-on software development, engineering, or R&D/research roles (including Software Engineering, Backend/Full-Stack, Systems/Cyber, Algorithm Development, ML/AI Engineering, and AI/Cyber Research). Strictly REJECT any QA, software testing, test automation, verification, IT, support, or roles requiring >{max_years} years of experience.
 - Also reject: DevOps-only, NOC/SOC, hardware design/verification, product/project/program management, sales, marketing, and any role that is mainly people management.
 - years_required = the MINIMUM years of professional experience the posting requires (null if not stated). Academic research / M.Sc. thesis work does not count as professional years unless the posting says so. "3+ years" -> 3. "Preferred"/"advantage" years do not count as required.
 - location_ok = false if the posting requires on-site work outside Northern Israel (e.g. "on-site in Tel Aviv / Petah Tikva / Jerusalem / Herzliya") with no hybrid or remote option. Northern Israel = Haifa, MATAM, Yokneam, Caesarea, Krayot, Karmiel, Migdal HaEmek, Nazareth / Nof HaGalil, Acre, Nahariya, Galilee. Hybrid or remote within Israel is OK.
@@ -25,7 +25,8 @@ SCORING (match_score 1-10): 9-10 = junior/new-grad dev or research role whose co
 TRACK: AI_ML_RESEARCH (ML/AI/CV/NLP/LLM engineering or research, data science, algorithm research), SYSTEMS_LOWLEVEL_CYBER (C/C++, embedded/firmware, Linux, OS, networking, security/cyber research), BACKEND_FULLSTACK (backend, full-stack, frontend, general software engineering, Java/Python services).
 
 OUTPUT FIELDS
-- summary_bullets: exactly 3 short bullets (max 25 words each): (1) the stack / research focus, (2) main responsibilities, (3) why it fits — citing ONLY facts from the CANDIDATE FACTS below. Never invent experience.
+- summary_bullets: exactly 3 short bullets (max 25 words each). Bullets 1 and 2 describe ONLY the job posting, never the candidate: (1) the posting's tech stack / research focus, (2) the posting's main responsibilities. Bullet 3 = why it fits, citing ONLY facts from the CANDIDATE FACTS below. Never invent experience.
+- Student, intern and part-time positions do not fit (the candidate wants full-time work): set is_relevant false.
 - tailoring_plan uses ONLY the IDs listed below:
   - subtitle_id: one of SUBTITLE IDS
   - domain_line_id: one of DOMAIN LINE IDS (the profile line closest to the role)

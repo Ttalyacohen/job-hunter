@@ -205,6 +205,9 @@ class Pipeline:
                                               for j in candidates))
             final: list[Job] = []
             for job in enriched:
+                if job.extra.get("enrich_failed"):
+                    backlog += 1          # never screen a job without its description; retry next run
+                    continue
                 company = self.company_by_id.get(job.company_id, {})
                 verdict = self.rules.check(job, company)
                 if not verdict.ok:

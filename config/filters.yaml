@@ -51,6 +51,12 @@ title:
     - Hardware
     - VLSI
     - FPGA
+    - Physical Design
+    - ASIC
+    - RTL
+    - DFT
+    - Analog
+    - Mixed Signal
     # Hebrew equivalents
     - בכיר
     - בכירה
@@ -64,12 +70,12 @@ title:
     - מכירות
     - שיווק
     - גיוס
-    # Optional: uncomment to also drop student / intern positions
-    # - Student
-    # - Intern
-    # - Internship
-    # - סטודנט
-    # - סטודנטית
+    # Student / intern positions (part-time; the candidate wants full-time)
+    - Student
+    - Intern
+    - Internship
+    - סטודנט
+    - סטודנטית
   exclude_case_sensitive:
     - IT
     - NOC
