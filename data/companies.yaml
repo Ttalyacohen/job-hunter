@@ -17,208 +17,211 @@
 
 companies:
   # ── Workday (POST /wday/cxs/{tenant}/{site}/jobs) ──────────────────────────
-  - name: NVIDIA
-    ats: workday
-    host: nvidia.wd5.myworkdayjobs.com
-    tenant: nvidia
-    site: NVIDIAExternalCareerSite
-    search_texts: [Israel]
-    verified: false
+- name: NVIDIA
+  ats: workday
+  host: nvidia.wd5.myworkdayjobs.com
+  tenant: nvidia
+  site: NVIDIAExternalCareerSite
+  search_texts: [Israel]
+  verified: false
 
-  - name: Intel
-    ats: workday
-    host: intel.wd1.myworkdayjobs.com
-    tenant: intel
-    site: External
-    search_texts: [Israel]
-    verified: false
+- name: Intel
+  ats: workday
+  host: intel.wd1.myworkdayjobs.com
+  tenant: intel
+  site: External
+  search_texts: [Israel]
+  verified: false
 
-  - name: Applied Materials
-    ats: workday
-    host: amat.wd1.myworkdayjobs.com
-    tenant: amat
-    site: External
-    search_texts: [Israel]
-    verified: false
+- name: Applied Materials
+  ats: workday
+  host: amat.wd1.myworkdayjobs.com
+  tenant: amat
+  site: External
+  search_texts: [Israel]
+  verified: false
 
-  - name: Philips
-    ats: workday
-    host: philips.wd3.myworkdayjobs.com
-    tenant: philips
-    site: jobs-and-careers
-    search_texts: [Haifa]
-    verified: false
+- name: Philips
+  ats: workday
+  host: philips.wd3.myworkdayjobs.com
+  tenant: philips
+  site: jobs-and-careers
+  search_texts: [Haifa]
+  verified: false
 
-  - name: GE HealthCare
-    ats: workday
-    host: gehc.wd5.myworkdayjobs.com
-    tenant: gehc
-    site: GEHC_ExternalSite
-    search_texts: [Haifa]
-    verified: false
+- name: GE HealthCare
+  ats: workday
+  host: gehc.wd5.myworkdayjobs.com
+  tenant: gehc
+  site: GEHC_ExternalSite
+  search_texts: [Haifa]
+  verified: false
 
-  - name: KLA
-    ats: workday
-    host: kla.wd1.myworkdayjobs.com
-    tenant: kla
-    site: Search
-    search_texts: [Israel]
-    verified: false
+- name: KLA
+  ats: workday
+  host: kla.wd1.myworkdayjobs.com
+  tenant: kla
+  site: Search
+  search_texts: [Israel]
+  verified: false
 
-  - name: Marvell
-    ats: workday
-    host: marvell.wd1.myworkdayjobs.com
-    tenant: marvell
-    site: MarvellCareers
-    search_texts: [Israel]
-    verified: false
+- name: Marvell
+  ats: workday
+  host: marvell.wd1.myworkdayjobs.com
+  tenant: marvell
+  site: MarvellCareers
+  search_texts: [Israel]
+  verified: false
 
-  - name: Qualcomm
-    ats: workday
-    host: qualcomm.wd5.myworkdayjobs.com
-    tenant: qualcomm
-    site: External
-    search_texts: [Haifa]
-    verified: false
+- name: Qualcomm
+  ats: workday
+  host: qualcomm.wd5.myworkdayjobs.com
+  tenant: qualcomm
+  site: External
+  search_texts: [Haifa]
+  verified: false
 
-  - name: Medtronic
-    ats: workday
-    host: medtronic.wd1.myworkdayjobs.com
-    tenant: medtronic
-    site: MedtronicCareers
-    search_texts: [Yokneam, Caesarea]
-    verified: false
+- name: Medtronic
+  ats: workday
+  host: medtronic.wd1.myworkdayjobs.com
+  tenant: medtronic
+  site: MedtronicCareers
+  search_texts: [Yokneam, Caesarea]
+  verified: false
 
-  - name: Cadence
-    ats: workday
-    host: cadence.wd1.myworkdayjobs.com
-    tenant: cadence
-    site: External_Careers
-    search_texts: [Israel]
-    verified: false
+- name: Cadence
+  ats: workday
+  host: cadence.wd1.myworkdayjobs.com
+  tenant: cadence
+  site: External_Careers
+  search_texts: [Israel]
+  verified: false
 
   # ── Lever ──────────────────────────────────────────────────────────────────
-  - name: Mobileye
-    ats: lever
-    site: mobileye
-    region: eu            # jobs.eu.lever.co/mobileye — has MATAM Haifa roles
-    verified: true
+- name: Mobileye
+  ats: lever
+  site: mobileye
+  region: eu              # jobs.eu.lever.co/mobileye — has MATAM Haifa roles
+  verified: true
 
   # ── Greenhouse ─────────────────────────────────────────────────────────────
-  - name: Augury
-    ats: greenhouse
-    board: augury
-    verified: false
+- name: Augury
+  ats: greenhouse
+  board: augury
+  verified: false
 
-  - name: VAST Data
-    ats: greenhouse
-    board: vastdata
-    verified: false
+- name: VAST Data
+  ats: greenhouse
+  board: vastdata
+  verified: false
 
   # ── Amazon (AWS / Annapurna Labs, Haifa) ───────────────────────────────────
-  - name: Amazon
-    ats: amazon
-    loc_queries: ["Haifa, Israel"]
-    verified: false
+- name: Amazon
+  ats: amazon
+  loc_queries: ["Haifa, Israel"]
+  verified: false
 
   # ── Comeet / unknown ATS (run discover_ats.py to fill in) ──────────────────
-  - name: monday.com
-    ats: unknown
-    careers_url: https://monday.com/jobs
-    verified: false
+- name: monday.com
+  ats: unknown
+  careers_url: https://monday.com/jobs
+  verified: false
 
-  - name: Hailo
-    ats: unknown
-    careers_url: https://hailo.ai/company-overview/careers/
-    verified: false
+- name: Hailo
+  ats: unknown
+  careers_url: https://hailo.ai/company-overview/careers/
+  verified: false
 
-  - name: Plarium
-    ats: unknown
-    careers_url: https://company.plarium.com/en/careers/
-    verified: false
+- name: Plarium
+  ats: unknown
+  careers_url: https://company.plarium.com/en/careers/
+  verified: false
 
-  - name: AppsFlyer
-    ats: unknown
-    careers_url: https://careers.appsflyer.com/
-    verified: false
+- name: AppsFlyer
+  ats: greenhouse
+  careers_url: https://careers.appsflyer.com/
+  verified: true
 
-  - name: Hibob
-    ats: unknown
-    careers_url: https://www.hibob.com/careers/
-    verified: false
+  board: appsflyer
+- name: Hibob
+  ats: unknown
+  careers_url: https://www.hibob.com/careers/
+  verified: false
 
-  - name: Quali
-    ats: unknown
-    careers_url: https://www.quali.com/careers/
-    verified: false
+- name: Quali
+  ats: unknown
+  careers_url: https://www.quali.com/careers/
+  verified: false
 
-  - name: Check Point
-    ats: unknown
-    careers_url: https://careers.checkpoint.com/
-    verified: false
+- name: Check Point
+  ats: unknown
+  careers_url: https://careers.checkpoint.com/
+  verified: false
 
-  - name: CyberArk
-    ats: unknown
-    careers_url: https://careers.cyberark.com/
-    verified: false
+- name: CyberArk
+  ats: unknown
+  careers_url: https://careers.cyberark.com/
+  verified: false
 
-  - name: Lightricks
-    ats: unknown
-    careers_url: https://www.lightricks.com/careers
-    verified: false
+- name: Lightricks
+  ats: unknown
+  careers_url: https://www.lightricks.com/careers
+  verified: false
 
-  - name: Plus500
-    ats: unknown
-    careers_url: https://www.plus500.com/en/careers
-    verified: false
+- name: Plus500
+  ats: unknown
+  careers_url: https://www.plus500.com/en/careers
+  verified: false
 
-  - name: Imagry
-    ats: unknown
-    careers_url: https://imagry.co/careers/
-    default_location: Haifa, Israel
-    verified: false
+- name: Imagry
+  ats: unknown
+  careers_url: https://imagry.co/careers/
+  default_location: Haifa, Israel
+  verified: false
 
-  - name: Tower Semiconductor
-    ats: unknown
-    careers_url: https://towersemi.com/careers/
-    default_location: Migdal HaEmek, Israel
-    verified: false
+- name: Tower Semiconductor
+  ats: unknown
+  careers_url: https://towersemi.com/careers/
+  default_location: Migdal HaEmek, Israel
+  verified: false
 
   # ── Big tech with in-house career sites (generic scraper, best effort) ─────
   # These sites render jobs with JavaScript, so the generic scraper may find
   # nothing. They are kept so --check-sources reports them; consider adding
   # their Haifa job alerts by email as a complement.
-  - name: Google
-    ats: generic
-    careers_url: https://www.google.com/about/careers/applications/jobs/results?location=Haifa%2C%20Israel
-    link_pattern: "jobs/results/\\d+"
-    default_location: Haifa, Israel
-    verified: false
+- name: Google
+  ats: generic
+  careers_url: 
+    https://www.google.com/about/careers/applications/jobs/results?location=Haifa%2C%20Israel
+  link_pattern: "jobs/results/\\d+"
+  default_location: Haifa, Israel
+  verified: false
 
-  - name: Apple
-    ats: generic
-    careers_url: https://jobs.apple.com/en-il/search?location=haifa-HFA
-    link_pattern: "/details/"
-    default_location: Haifa, Israel
-    verified: false
+- name: Apple
+  ats: generic
+  careers_url: https://jobs.apple.com/en-il/search?location=haifa-HFA
+  link_pattern: "/details/"
+  default_location: Haifa, Israel
+  verified: false
 
-  - name: Microsoft
-    ats: generic
-    careers_url: https://jobs.careers.microsoft.com/global/en/search?lc=Haifa%2C%20Haifa%20District%2C%20Israel
-    default_location: Haifa, Israel
-    verified: false
+- name: Microsoft
+  ats: generic
+  careers_url: 
+    https://jobs.careers.microsoft.com/global/en/search?lc=Haifa%2C%20Haifa%20District%2C%20Israel
+  default_location: Haifa, Israel
+  verified: false
 
-  - name: Elbit Systems
-    ats: unknown
-    careers_url: https://elbitsystemscareer.com/
-    verified: false
+- name: Elbit Systems
+  ats: unknown
+  careers_url: https://elbitsystemscareer.com/
+  verified: false
 
-  - name: Rafael
-    ats: unknown
-    careers_url: https://career.rafael.co.il/
-    verified: false
+- name: Rafael
+  ats: unknown
+  careers_url: https://career.rafael.co.il/
+  verified: false
 
-  - name: IBM Research Haifa
-    ats: generic
-    careers_url: https://www.ibm.com/careers/search?field_keyword_05[0]=Israel
-    verified: false
+- name: IBM Research Haifa
+  ats: generic
+  careers_url: https://www.ibm.com/careers/search?field_keyword_05[0]=Israel
+  verified: false
