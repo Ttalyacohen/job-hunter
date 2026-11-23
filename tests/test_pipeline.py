@@ -133,3 +133,21 @@ def test_job_whose_description_fails_to_load_is_not_screened(monkeypatch, tmp_pa
     f = tmp_path / "seen_jobs.json"
     seen = json.loads(f.read_text())["jobs"] if f.exists() else {}
     assert gem.call_count == 0 and "smartrecruiters:sr:P1" not in seen
+
+
+@respx.mock
+def test_same_role_in_second_city_is_not_alerted_twice(monkeypatch, tmp_path, settings):
+    board = {"jobs": [
+        {"id": 1, "title": "Junior ML Engineer", "absolute_url": "https://acme/1", "location": {"name": "Haifa, Israel"},
+         "content": "PyTorch", "updated_at": "2026-11-21T08:00:00Z"}]}
+    route = respx.get(GH)
+    route.side_effect = [httpx.Response(200, json=board), httpx.Response(200, json={"jobs": board["jobs"] + [
+        {"id": 2, "title": "Junior ML Engineer", "absolute_url": "https://acme/2",
+         "location": {"name": "Yokneam, Israel"}, "content": "PyTorch", "updated_at": "2026-11-22T08:00:00Z"}]})]
+    gem = respx.post(API.format(model="gemini-2.5-flash")).mock(side_effect=gemini_reply)
+    msg = respx.post(f"{TG}/sendMessage").respond(json={"ok": True, "result": {"message_id": 7}})
+    respx.post(f"{TG}/sendDocument").respond(json={"ok": True, "result": {}})
+    run_once(monkeypatch, tmp_path, settings)
+    run_once(monkeypatch, tmp_path, settings)
+    seen = json.loads((tmp_path / "seen_jobs.json").read_text())["jobs"]
+    assert msg.call_count == 1 and gem.call_count == 1 and seen["greenhouse:acme:2"]["s"] == "d"

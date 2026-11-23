@@ -60,6 +60,15 @@ def recency_key(job: Job) -> float:
         return 0.0
 
 
+DUPLICATE = "d"         # seen-status: same company + same title already alerted recently
+DUPLICATE_WINDOW_DAYS = 30
+
+
+def title_signature(job: Job) -> str:
+    """Same role re-posted for another city (e.g. Mobileye Jerusalem / Ramat Gan) -> same signature."""
+    return f"{job.company_id}|{re.sub(r'[^a-z0-9א-ת]+', ' ', job.title.lower()).strip()}"
+
+
 def write_step_summary(lines: list[str]) -> None:
     path = os.getenv("GITHUB_STEP_SUMMARY")
     if path:
@@ -110,6 +119,8 @@ class Pipeline:
         try:
             await self.notifier.send_job(job, ev, pdf)
             self.seen.mark(job.key, NOTIFIED, job.title)
+            self.state.data.setdefault("sent_titles", {})[title_signature(job)] = \
+                datetime.now(timezone.utc).date().isoformat()
             self.counts["notified"] += 1
             return True
         except TelegramError as exc:
@@ -241,7 +252,23 @@ class Pipeline:
             await self.notifier.aclose()
         return 0
 
+    def drop_duplicates(self, jobs: list[Job]) -> list[Job]:
+        sent = self.state.data.setdefault("sent_titles", {})
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=DUPLICATE_WINDOW_DAYS)).date().isoformat()
+        for sig in [k for k, d in sent.items() if d < cutoff]:
+            del sent[sig]
+        keep = []
+        for job in jobs:
+            if title_signature(job) in sent:
+                if not self.args.dry_run:
+                    self.seen.mark(job.key, DUPLICATE, job.title)
+                log.info("duplicate of an alert already sent: %s / %s (%s)", job.company, job.title, job.location)
+            else:
+                keep.append(job)
+        return keep
+
     async def stage2(self, jobs: list[Job]) -> None:
+        jobs = self.drop_duplicates(jobs)
         if not jobs:
             return
         mode = self.settings.pipeline["on_quota_exhausted"]
