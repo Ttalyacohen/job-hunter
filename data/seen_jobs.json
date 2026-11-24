@@ -20196,6 +20196,12 @@
    "s": "f",
    "t": "Industrial Engineering and Management Student"
   },
+  "workday:intel:JR0289426": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Practical Engineering Student Working in Shifts - Kiryat Gat"
+  },
   "workday:intel:JR0289541": {
    "f": "2026-11-23",
    "l": "2026-11-24",
@@ -22145,6 +22151,12 @@
    "l": "2026-11-24",
    "s": "f",
    "t": "Senior Network Architect, Advanced Packaging"
+  },
+  "workday:nvidia:JR2022964": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Senior Global Capacity Planner"
   },
   "workday:nvidia:JR2022985": {
    "f": "2026-11-23",
