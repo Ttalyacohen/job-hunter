@@ -19068,6 +19068,12 @@
    "s": "f",
    "t": "SOC Analyst (Student position)"
   },
+  "lever:mobileye:fb6ae5c4-6bcc-46a9-8107-ac537b8a546e": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "C++ Embedded Software Team Leader – In-Vehicle HD Maps"
+  },
   "lever:mobileye:fddc1e14-fb29-4181-9228-2a0e12d299bc": {
    "f": "2026-11-23",
    "l": "2026-11-24",
@@ -23093,6 +23099,12 @@
    "l": "2026-11-24",
    "s": "f",
    "t": "Senior Software Engineer, SONiC"
+  },
+  "workday:nvidia:JR2029278": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "r",
+   "t": "Software Engineer, Storage"
   },
   "workday:nvidia:JR2029293": {
    "f": "2026-11-23",
