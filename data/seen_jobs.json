@@ -8676,6 +8676,18 @@
    "s": "f",
    "t": "Technical Account Manager - USA"
   },
+  "comeet:vast-data:0A.575": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Professional Services Engineer"
+  },
+  "comeet:vast-data:0A.575-2E.30B": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Professional Services Engineer"
+  },
   "comeet:vast-data:0D.D6F": {
    "f": "2026-11-23",
    "l": "2026-11-24",
@@ -11669,6 +11681,12 @@
    "l": "2026-11-24",
    "s": "f",
    "t": "Director of Social Media and Community Director of Social Media and Community Ma"
+  },
+  "generic:fiverr:d26679a5f7f27339": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Operation Manager, Content Moderation Operation Manager, Content Moderation Cust"
   },
   "generic:forsight-robotics:48da149a37153730": {
    "f": "2026-11-23",
@@ -20202,6 +20220,12 @@
    "s": "f",
    "t": "Practical Engineering Student Working in Shifts - Kiryat Gat"
   },
+  "workday:intel:JR0289427": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Industrial Waste Systems Practical Engineering Student Working in Shifts - Kirya"
+  },
   "workday:intel:JR0289541": {
    "f": "2026-11-23",
    "l": "2026-11-24",
@@ -21887,6 +21911,12 @@
    "l": "2026-11-24",
    "s": "f",
    "t": "Senior Firmware Performance Engineer"
+  },
+  "workday:nvidia:JR2021072": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Senior Customer Program Manager - OEMs"
   },
   "workday:nvidia:JR2021134": {
    "f": "2026-11-23",
