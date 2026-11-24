@@ -7074,6 +7074,12 @@
    "s": "f",
    "t": "Account Executive - TOLA (Majors)"
   },
+  "comeet:cyera:03.173": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Full Stack Engineer - CTO Office"
+  },
   "comeet:cyera:04.565": {
    "f": "2026-11-23",
    "l": "2026-11-24",
@@ -20951,6 +20957,12 @@
    "l": "2026-11-24",
    "s": "f",
    "t": "Principal Product Security Engineer"
+  },
+  "workday:medtronic:R82515": {
+   "f": "2026-11-24",
+   "l": "2026-11-24",
+   "s": "f",
+   "t": "Principal Software Automation Engineer"
   },
   "workday:nvidia:JR1990271": {
    "f": "2026-11-23",
