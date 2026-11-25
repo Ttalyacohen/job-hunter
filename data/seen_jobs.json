@@ -16142,7 +16142,7 @@
   },
   "greenhouse:outbrain:4740541101": {
    "f": "2026-11-23",
-   "l": "2026-11-24",
+   "l": "2026-11-25",
    "s": "f",
    "t": "Sales Manager"
   },
@@ -22373,6 +22373,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Senior Software Engineer, DOCA SDK"
+  },
+  "workday:nvidia:JR2021383": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Hardware Failure Analysis Engineer – Physical Failure Analysis"
   },
   "workday:nvidia:JR2021397": {
    "f": "2026-11-23",
