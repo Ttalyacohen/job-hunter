@@ -10560,6 +10560,12 @@
    "s": "f",
    "t": "Security Researcher II /Senior Security Researcher - Microsoft Defender (Multipl"
   },
+  "eightfold:microsoft:1970393557079172": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Software Engineering II"
+  },
   "eightfold:qualcomm:446717639048": {
    "f": "2026-11-23",
    "l": "2026-11-25",
@@ -23633,6 +23639,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Senior Chip Design Verification Engineer"
+  },
+  "workday:nvidia:JR2029870": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Senior AI and LLM Solutions Software Engineer"
   },
   "workday:nvidia:JR2029939": {
    "f": "2026-11-24",
