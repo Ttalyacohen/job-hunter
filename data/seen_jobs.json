@@ -18246,6 +18246,12 @@
    "s": "f",
    "t": "System Integration and Testing Expert (m/w/d)"
   },
+  "lever:mobileye:0fda07a5-aa04-431b-9eb1-a1f92f1c6884": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "AV support specialist"
+  },
   "lever:mobileye:115adbc6-d6e5-49fc-95e4-8b71e5b15d04": {
    "f": "2026-11-23",
    "l": "2026-11-24",
@@ -20436,6 +20442,12 @@
    "s": "f",
    "t": "Industrial Engineering and Management Student"
   },
+  "workday:intel:JR0289401": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Software student for low-level code development"
+  },
   "workday:intel:JR0289426": {
    "f": "2026-11-24",
    "l": "2026-11-25",
@@ -20981,6 +20993,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Design Verification- Intern"
+  },
+  "workday:marvell:2604487": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Design Verification - Intern"
   },
   "workday:marvell:2604495": {
    "f": "2026-11-23",
