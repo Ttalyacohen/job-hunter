@@ -20364,6 +20364,12 @@
    "s": "f",
    "t": "Mechanical Engineer"
   },
+  "workday:ge-healthcare:R4049440": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Algorithm Verification Engineer"
+  },
   "workday:ge-healthcare:R4049528": {
    "f": "2026-11-23",
    "l": "2026-11-25",
@@ -22415,6 +22421,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Senior FC Verification & Simulation Infrastructure Engineer"
+  },
+  "workday:nvidia:JR2021923": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Chip Design Engineer"
   },
   "workday:nvidia:JR2021941": {
    "f": "2026-11-23",
