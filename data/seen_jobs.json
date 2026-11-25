@@ -10542,6 +10542,12 @@
    "s": "f",
    "t": "Customer Success Account Manager"
   },
+  "eightfold:microsoft:1970393557056077": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Principal Product Security Architect - Microsoft Security"
+  },
   "eightfold:microsoft:1970393557070205": {
    "f": "2026-11-23",
    "l": "2026-11-25",
@@ -15551,6 +15557,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Mid Market Sales Representative"
+  },
+  "greenhouse:island:4411445009": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Sales Engineer - Channel"
   },
   "greenhouse:island:4411835009": {
    "f": "2026-11-23",
@@ -23825,6 +23837,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Senior Technical Trainer and Content Developer, AI Compute Systems"
+  },
+  "workday:nvidia:JR2030228": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Software Networking Engineer"
   },
   "workday:nvidia:JR2030397": {
    "f": "2026-11-23",
