@@ -91,7 +91,7 @@
  ],
  "gemini": {
   "calls": {
-   "gemini-3.5-flash-lite": 1
+   "gemini-3.5-flash-lite": 3
   },
   "date": "2026-11-25",
   "exhausted": [],
@@ -106,6 +106,7 @@
   "amazon|junior sw engineer virtual platforms": "2026-11-23",
   "amazon|software developer engineer aws transform": "2026-11-23",
   "amazon|software development engineer 2027": "2026-11-23",
-  "apple|ai research engineer chip design": "2026-11-23"
+  "apple|ai research engineer chip design": "2026-11-23",
+  "mobileye|algorithm developer for radar lidar group": "2026-11-25"
  }
 }
