@@ -20052,6 +20052,12 @@
    "s": "f",
    "t": "MATERIAL PLANNING ANALIST"
   },
+  "workday:flex:WD234348": {
+   "f": "2026-11-25",
+   "l": "2026-11-25",
+   "s": "f",
+   "t": "Material Quotation Analyst"
+  },
   "workday:ge-healthcare:R4042375": {
    "f": "2026-11-23",
    "l": "2026-11-25",
