@@ -20628,6 +20628,12 @@
    "s": "f",
    "t": "Lead Service Integrator (LSI)"
   },
+  "workday:ge-healthcare:R4049962": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Lead Service Integrator"
+  },
   "workday:ge-healthcare:R4050004": {
    "f": "2026-11-24",
    "l": "2026-11-26",
