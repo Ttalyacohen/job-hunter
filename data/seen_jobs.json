@@ -14580,6 +14580,12 @@
    "s": "f",
    "t": "Technical Support Engineer"
   },
+  "greenhouse:axonius:8217221003": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Senior Product Security Architect"
+  },
   "greenhouse:cato-networks:4352164101": {
    "f": "2026-11-23",
    "l": "2026-11-26",
@@ -16760,7 +16766,7 @@
   },
   "greenhouse:payoneer:8185487": {
    "f": "2026-11-23",
-   "l": "2026-11-25",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Supervisor"
   },
@@ -19190,7 +19196,7 @@
   },
   "lever:mobileye:c4572587-c353-43fb-b69a-e43b3fcc595f": {
    "f": "2026-11-23",
-   "l": "2026-11-23",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Autosar Cybersecurity Software Development (m/w/d)"
   },
@@ -19238,7 +19244,7 @@
   },
   "lever:mobileye:ce5fa008-35a8-479e-88c3-6b4ab9ab082e": {
    "f": "2026-11-23",
-   "l": "2026-11-23",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Autosar Cybersecurity Software Development (m/w/d)"
   },
@@ -19403,6 +19409,12 @@
    "l": "2026-11-25",
    "s": "f",
    "t": "Automotive Supplier Quality Engineer (m/w/d)"
+  },
+  "lever:mobileye:e9798a49-299d-465e-a00c-c5270381c0e6": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Platform Deployment Technical Lead (m/w/d)"
   },
   "lever:mobileye:eadec8b5-6b58-40f5-a024-5915cef79001": {
    "f": "2026-11-23",
@@ -21258,11 +21270,23 @@
    "s": "f",
    "t": "Integration Engineer"
   },
+  "workday:kla:2643894": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Electrical, Electronics & Control Systems Practical Engineer"
+  },
   "workday:kla:2643908": {
    "f": "2026-11-25",
    "l": "2026-11-26",
    "s": "f",
    "t": "Integrator - AOS/AOI Systems"
+  },
+  "workday:kla:2643933": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "System Integrator, Laser-Based Platforms"
   },
   "workday:marvell:2603477": {
    "f": "2026-11-23",
