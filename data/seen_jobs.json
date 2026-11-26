@@ -10854,6 +10854,12 @@
    "s": "f",
    "t": "RISCV CPU Architect (SW position) – Performance Modeling - Hod Hasharon"
   },
+  "eightfold:qualcomm:446722366373": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "HW RF Board Designer - Haifa"
+  },
   "generic:advanced-energy:02683330a93d918b": {
    "f": "2026-11-23",
    "l": "2026-11-26",
@@ -12710,7 +12716,7 @@
   },
   "generic:monday-com:97cdadc6c41084f8": {
    "f": "2026-11-23",
-   "l": "2026-11-25",
+   "l": "2026-11-26",
    "s": "f",
    "t": "AI Solutions Builder Operations Tel-Aviv, IL"
   },
@@ -18917,6 +18923,12 @@
    "l": "2026-11-26",
    "s": "r",
    "t": "Experienced Deep Learning Algorithm Developer - 3D Perception Team"
+  },
+  "lever:mobileye:8bf135f8-0f0d-4749-8ce1-a19247db64f4": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Execution Project Manager - Algorithm Department - Temporary position for 9 mont"
   },
   "lever:mobileye:8d09a950-7497-409c-a7d2-4a72458435de": {
    "f": "2026-11-23",
