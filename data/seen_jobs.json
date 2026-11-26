@@ -20762,7 +20762,7 @@
   },
   "workday:intel:JR0288169": {
    "f": "2026-11-24",
-   "l": "2026-11-24",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Software Applications Engineering Student"
   },
@@ -20780,13 +20780,13 @@
   },
   "workday:intel:JR0288531": {
    "f": "2026-11-24",
-   "l": "2026-11-25",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Haifa Lab support student"
   },
   "workday:intel:JR0288605": {
    "f": "2026-11-23",
-   "l": "2026-11-24",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Manufacturing Technician for Intel Kiryat Gat"
   },
@@ -20804,7 +20804,7 @@
   },
   "workday:intel:JR0289024": {
    "f": "2026-11-23",
-   "l": "2026-11-24",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Analytical Chemistry Lab Technician"
   },
@@ -20816,13 +20816,13 @@
   },
   "workday:intel:JR0289115": {
    "f": "2026-11-23",
-   "l": "2026-11-24",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Practical Engineering Student for Intel Kiryat Gat"
   },
   "workday:intel:JR0289122": {
    "f": "2026-11-23",
-   "l": "2026-11-25",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Production ME Student for Intel Kiryat Gat"
   },
@@ -20858,7 +20858,7 @@
   },
   "workday:intel:JR0289366": {
    "f": "2026-11-23",
-   "l": "2026-11-24",
+   "l": "2026-11-26",
    "s": "f",
    "t": "Industrial Engineering and Management Student"
   },
@@ -21461,6 +21461,12 @@
    "l": "2026-11-26",
    "s": "f",
    "t": "System Integrator, Laser-Based Platforms"
+  },
+  "workday:kla:2643975": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Mechanical NPI Engineer"
   },
   "workday:marvell:2603477": {
    "f": "2026-11-23",
