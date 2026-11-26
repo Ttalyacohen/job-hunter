@@ -20670,6 +20670,12 @@
    "s": "f",
    "t": "Sr Staff AI Platform Architect"
   },
+  "workday:ge-healthcare:R4050009": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Documentation Engineer"
+  },
   "workday:ge-healthcare:R4050176": {
    "f": "2026-11-26",
    "l": "2026-11-26",
@@ -24071,6 +24077,18 @@
    "l": "2026-11-26",
    "s": "f",
    "t": "Software Networking Engineer"
+  },
+  "workday:nvidia:JR2030392": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Senior Global Procurement Manager"
+  },
+  "workday:nvidia:JR2030393": {
+   "f": "2026-11-26",
+   "l": "2026-11-26",
+   "s": "f",
+   "t": "Senior Material Procurement Manager"
   },
   "workday:nvidia:JR2030397": {
    "f": "2026-11-23",
