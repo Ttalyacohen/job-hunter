@@ -23916,6 +23916,12 @@
    "s": "r",
    "t": "Software Engineer, Storage"
   },
+  "workday:nvidia:JR2029286": {
+   "f": "2026-11-27",
+   "l": "2026-11-27",
+   "s": "f",
+   "t": "Principal Data Analytics and Machine Learning Engineer"
+  },
   "workday:nvidia:JR2029293": {
    "f": "2026-11-23",
    "l": "2026-11-27",
@@ -24102,6 +24108,12 @@
    "s": "f",
    "t": "Physical Design CAD Engineer"
   },
+  "workday:nvidia:JR2029954": {
+   "f": "2026-11-27",
+   "l": "2026-11-27",
+   "s": "f",
+   "t": "Senior Mechanical Hardware Design Engineer, IC Product"
+  },
   "workday:nvidia:JR2029955": {
    "f": "2026-11-23",
    "l": "2026-11-27",
@@ -24137,6 +24149,18 @@
    "l": "2026-11-27",
    "s": "f",
    "t": "Senior Technical Trainer and Content Developer, AI Compute Systems"
+  },
+  "workday:nvidia:JR2030145": {
+   "f": "2026-11-27",
+   "l": "2026-11-27",
+   "s": "f",
+   "t": "Senior Infrastructure ME Test Board Manager"
+  },
+  "workday:nvidia:JR2030222": {
+   "f": "2026-11-27",
+   "l": "2026-11-27",
+   "s": "f",
+   "t": "Senior Business Solution Architect - PLM"
   },
   "workday:nvidia:JR2030228": {
    "f": "2026-11-25",
