@@ -91,9 +91,9 @@
  ],
  "gemini": {
   "calls": {
-   "gemini-3.5-flash-lite": 4
+   "gemini-3.5-flash-lite": 1
   },
-  "date": "2026-11-25",
+  "date": "2026-11-27",
   "exhausted": [],
   "unavailable": []
  },
